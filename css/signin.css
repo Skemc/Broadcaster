@@ -4,12 +4,13 @@ body{
     padding: 0;
     background: url(../assets/no-to-corruption.jpg) no-repeat;
     background-size: cover;
-    background-position: center;
+    height: auto;
+    background-position: center center;
     background-attachment: fixed;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
-.signup{
+.signin{
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.8) !important;
@@ -17,71 +18,53 @@ body{
     top: 0;
     justify-content: center;
     align-items: center;
-    /* z-index: ; */
  }
-
-.signup-box{
-    width: 370px;
+.signin-box{
+    width: 300px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     color: black;
-    
+    background: lightgrey;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 40px auto;
 }
-.signup-box h1{
+.signin-box h1{
     float: center;
     font-size: 40px;
     border-bottom: 5px solid black;
-    margin-bottom: 20px;
-    padding: 5px;
-    margin-top: 5px;
+    margin-bottom: 50px;
+    padding: 13px 0;
 }
-.form{
+.textbox{
     width: 90%;
     overflow: hidden;
     font-size: 20px;
     padding: 8px 0px;
+    margin: 8px;
     border-bottom: 1px solid black;
-    color: white;
-    margin-left: 19px;
+    color: lightgrey;
 }
-.form i{
+.textbox i{
     width: 20px;
     text-align: center;
     color: black;
-    float: left;
-    margin-top: 12px;
 }
-#for{
-    display: inline-flex;
-    margin-left:5px;
-    text-align: center;
-    width: 98%;
-
-}
-.form input{
+.textbox input{
     border: none;
-    border-bottom: 1px solid black;
     outline: none;
     background: none;
-    width: 92%;
+    width: 80%;
     padding: 10px;
     font-size: 18px;
-    margin: 3px 5px;
+    margin: 3px;
     font-weight: 600;
     color: rgb(22, 21, 21);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.info{
-    background: lightgrey;
-    border-radius: 10px;
-    padding: 50px;
-    width: 100%;
-    margin: 10px auto;
-    margin: -80px;
-}
-.info button{
+.signin-box button{
     width: 100%;
     background: none;
     border: 2px solid black;
@@ -89,69 +72,45 @@ body{
     padding: 5px;
     font-size: 18px;
     cursor: pointer;
-    margin-top: 20px;
 }
-.info button:hover{
+.signin-box button:hover{
     background: black;
     color: white;
 }
 p{
     text-align: center;
     color: black;
-    width: 100%;
+    font-size: 20px;
 }
 p a{
     color: black;
-    font-weight: 900;
+    font-weight: bolder;
     text-decoration: none;
 }
 p a:hover{
     font-size: 1.1em;
 }
 
-/* Tabelt */
+/* Responsiveness */
+
+/* Tablet */
 
 @media(max-width:768px){
+    .signin-box{
+        width: 70%;
+        margin: 30px 0px 30px 0px;
+        font-size: 20px;
+        transform: translate(-50%,-50%);
+    }
 
-    .info{
-        width: 100%;
-        margin: -50px;
-        
-        font-size: 15px;
-    }
-    form input{
-        padding: 10px;
-        margin: 6px;
-    }
-    form{
-        padding: 10px;
-        margin: 6px;
-    }
-    .info button{
-        width: 95%;
-        margin: 15px 5px; 
-    }
-    
 }
- 
-/* Mobile responsiveness */
+
+/* Mobile */
 
 @media(max-width:425px){
-    .info{
-        width: 80%;
-        margin: -15px;
-        font-size: 15px;
-    }
-    .form input{
-        padding: 9px;
-        margin: 4px;
-    }
-    .form {
-        padding: 9px;
-        margin: 4px;
-    }
-    .info button{
-        width: 95%;
-        margin: 10px 3px;
+    .signin-box, select {
+        width: 70%;
+        margin: 30px 0px 30px 0px;
+        transform: translate(-50%,-50%);
     }
 }
