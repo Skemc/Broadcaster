@@ -1,0 +1,176 @@
+@import"https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+header{
+    width: 100%;
+    background: lightgrey;
+    box-shadow: 2px 1px 6px;
+    height: 60px ;
+    overflow: hidden;
+}
+ .logo{
+    float: left;
+    height: inherit;
+    margin-left: 0em;
+    padding-left: 20px;
+}
+
+header ul{
+    float: right;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+header .menu{
+    display: none;
+}
+.side-menu{
+    display: none;
+}
+.side-menu ul{
+    list-style: none;
+}
+.side-menu ul li a{
+    color: black;
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+header .menu:hover{
+    font-weight: 900;
+    transition: 0.5s;
+}
+header ul li{
+    float: left;
+}
+header ul li a{
+    color: black;
+    display: block;
+    padding: 21px;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+header ul li a:hover{
+    font-weight: 900;
+    transition: 0.5s;
+}
+
+.footer{
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    height: 60px;
+    background: lightgrey;
+    overflow: hidden;
+  }
+footer p{
+    text-align: center;
+    padding: 20px ;
+    margin: 0px;
+    height: 40px;
+    font-weight: 900;
+    font-size: 20px;
+  }
+  .home{
+    background: url(../assets/no-to-corruption.jpg) ;
+    background-size: cover;
+    background-position: center;
+    height: 674px;
+}
+#btn-close{
+    color: red;
+    font-size: 35px;
+    margin-bottom:10px;
+    position: absolute;
+    right: 5px;
+    text-decoration: none;
+    
+}
+#side-menu{
+    position: absolute;
+    width: 100%;
+    background: lightgrey;
+    display: none;
+
+}
+
+/* Mobile */
+
+@media(max-width:425px){
+    html,body{
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-x: hidden;
+    }
+    header{
+        position: relative;
+    }
+    header ul {
+        width: 100%;
+        background: lightgrey;
+        max-height: 0px;
+        overflow: hidden;
+        display: block;
+    }
+    header ul li {
+        width: 100%;
+    }
+    header .menu{
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 1.9em;
+        color: black;
+    }
+    .side-menu ul li a:hover{
+        font-weight: 900;
+        transition: 0.5s;
+    }
+    .home{
+        background: url(../assets/49.jpg) ;
+        background-size: cover;
+        background-position: center;
+        height: 643px;
+    }
+} 
+
+/* Tablet */
+
+@media(max-width:768px){
+    html,body{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    .home{
+        background: url(../assets/49.jpg) ;
+        background-size: cover;
+        background-position: center;
+        height: 643px;
+    }
+}
+
+/* Large Screen */
+
+@media(min-width:2560px){
+    
+    html,body{
+        width: 70%;
+        margin-left: 200px;
+        padding: 0px;
+        overflow-x: hidden;
+        height: 764px;
+        /* transform: translate(%); */
+        position: absolute;
+    }
+
+
+} 
+
