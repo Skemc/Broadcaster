@@ -38,7 +38,7 @@ Make sure you have cloned this repo to your local machine, and after then run cd
 
 # Follow the UI link
 
-[UI Link](https://skemc.github.io/teamworks/UI/)
+[UI Link](https://skemc.github.io/Broadcaster/UI/)
 
 # Pivotal tracker stories
 [Project stories](https://www.pivotaltracker.com/n/projects/2411782)
