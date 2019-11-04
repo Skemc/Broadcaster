@@ -10,6 +10,34 @@ body{
     display: block;
     clear: both;
 }
+.list{
+    background: lightgrey;
+}
+.text-input{
+    padding: .7rem 1rem;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid grey;
+    outline: none;
+    color: grey;
+    line-height: 1.5rem;
+    font-size: 1.2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.btn{
+    padding: .5rem 1rem;
+    background: grey;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    font-size: 19px;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.btn:hover{
+    background: lightgrey;
+}
 header{
     width: 100%;
     background: lightgrey;
@@ -96,6 +124,7 @@ header ul li a:hover{
     flex: 8;
     padding: 40px 100px 100px;
     overflow-y: scroll;
+    background: rgb(231, 231, 231);
 }
 .page-wrapper .page-title{
     text-align: center;
@@ -114,9 +143,14 @@ th,td{
     border-bottom: 1px solid grey;
 
 }
-.list{
-    background: lightgrey;
+form div{
+    margin-bottom: 15px;
 }
-
-
+label{
+    font-size: 20px;
+}
+#map {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+   }
 
