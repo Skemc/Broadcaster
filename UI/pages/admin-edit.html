@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/report.css">
+    <title>Admin Edit</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../assets/LogoMakr_0sxTjY.png" alt style="height: 60px">
+        </div>
+
+        <ul class="nav">
+            <li> <a href="../index.html">Sign out</a></li>
+        </ul>
+    </header>
+
+    <div class="mobile">
+        <div class="mobile-header">
+            <div class="bars">
+                <i class="fa fa-bars menu " onclick="showMenu()"></i>
+            </div>
+
+            <div class="mobile-title">
+                <ul>
+                        <li><a href="./admin-edit.html" class="show">Edit Report</a></li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="side-menu" class="side-menu">
+        <a href="" id="btn-close" onclick="closeMore()">&times;</a>
+        <ul>
+            <li><a href="./admin.html">List of Reports</a></li>
+            <li><a href="./admin-edit.html" class="show">Edit Report</a></li>
+            <li><a href="../index.html">Sign Out</a></li>
+        </ul>
+    </div>
+
+    <div class="page-wrapper clearfix">
+        <div class="side-content">
+            <ul>
+                <li><a href="./admin.html">List of Reports</a></li>
+                <li><a href="./admin-edit.html" class="list">Edit Report</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h2 class="page-title">Edit Report</h2>
+            <div class="content">
+                <form action="" method="post">
+                    <div>
+                        <label>Title</label>
+                        <p>A damaged bridge in north east of the country</p>
+                    </div>
+
+                    <div class="topic">
+                        <label>Type</label>
+                        <p>Intervention</p>
+                    </div>
+
+                    <div class="location">
+                        <label>Location</label><br>
+                        <div class="loc">
+                            <div class="lat">
+                                <label>Latitude</label>
+                                <p>-1.9496959999999999</p>
+                            </div>
+
+                            <div class="long">
+                                <label>Longitude</label>
+                                <p>30.1006848</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Status">
+                            <label>Status</label>
+                            <select name="Status" class="text-input">
+                                <option value="Under Investigation">Under Investigation</option>
+                                <option value="Resolved">Resolved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                    </div>
+
+                    <div>
+                        <label>Comment</label>
+                        <p>As I was passing in the car from a trip in the north a realised
+                            this certain bridge that would cause harm in the future due to 
+                            how it was damaged and which is daily used by the peaple in that village 
+                            which made me take the resposability to ask the government to intervene if its
+                            possible  </p>
+                    </div>
+
+                    <div class="upload">
+                        <div class="image">
+                            <label>Upload Image</label><br><br>
+                            <img id="output" width="100%" height="400" src="../assets/flood-hit_bridges.jpg">
+
+                        </div>
+
+                        <div class="video">
+                            <label>Upload Video</label><br><br>
+                            <video id="output1" width="100%" height="400" controls src="../assets/videoplayback.webm">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div>
+                        <br>
+                        <a href="./list.html" class="btn" title="Submit">
+                            <h8>Save</h8>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../script/scripts.js"></script>
+</body>
+
+</html>
