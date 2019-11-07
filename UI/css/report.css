@@ -1,19 +1,25 @@
 @import"https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
-
-body{
+body {
     margin: 0px;
     padding: 0px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.clearfix::after{
+
+.clearfix::after {
     content: '';
     display: block;
     clear: both;
 }
-.list{
+
+.list {
     background: lightgrey;
 }
-.text-input{
+
+.show{
+    font-weight: bolder;
+}
+
+.text-input {
     padding: .7rem 1rem;
     display: block;
     width: 100%;
@@ -25,7 +31,8 @@ body{
     font-size: 1.2em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.btn{
+
+.btn {
     padding: .5rem 1rem;
     background: grey;
     color: black;
@@ -35,79 +42,168 @@ body{
     font-weight: bolder;
     text-decoration: none;
 }
-.btn:hover{
+
+.btn:hover {
     background: lightgrey;
 }
-header{
+
+#btn-close{
+    color: red;
+    font-size: 40px;
+    margin-bottom:10px;
+    position: absolute;
+    right: 5px;
+    text-decoration: none;
+    
+}
+
+#side-menu{
+    position: absolute;
+    width: 100%;
+    background: grey;
+    display: none;
+    overflow: hidden;
+    z-index: 888888;
+}
+
+header {
     width: 100%;
     background: lightgrey;
     box-shadow: 2px 1px 6px;
-    height: 60px ;
+    height: 60px;
     overflow: hidden;
     margin-bottom: 2px;
 }
- .logo{
+
+.logo {
     float: left;
     height: inherit;
     margin-left: 0em;
     padding-left: 20px;
 }
 
-header ul{
+header ul {
     float: right;
     margin: 0px;
     padding: 0px;
     list-style: none;
 }
-header .menu{
+
+header .menu {
     display: none;
 }
-.side-menu{
+
+.side-menu {
     display: none;
 }
-.side-menu ul{
+
+.side-menu ul {
     list-style: none;
 }
-.side-menu ul li a{
+
+.side-menu ul li a {
     color: black;
     display: block;
     padding: 5px;
     text-decoration: none;
-    font-size: 1.1em;
+    border-bottom: 1px solid lightgrey;
+    font-size: 25px;
 }
-header .menu:hover{
+
+.side-menu ul li a:hover{
+    background: lightgrey;
+    cursor: pointer;
+} 
+
+header .menu:hover {
     font-weight: 900;
     transition: 0.5s;
 }
-header ul li{
+
+header ul li {
     float: left;
 }
-header ul li a{
+
+header ul li a {
     color: black;
     display: block;
     padding: 21px;
     text-decoration: none;
     font-size: 1.1em;
 }
-header ul li a:hover{
+
+header ul li a:hover {
     font-weight: 900;
     transition: 0.5s;
 }
-.page-wrapper{
+
+.mobile{
+    display: none;
+}
+
+.mobile-header{
+    width: 100%;
+    background: rgb(231, 231, 231);
+    box-shadow: 2px 1px 6px;
+    height: 60px;
+    overflow: hidden;
+    margin-bottom: 2px;  
+    display: flex;
+}
+
+.mobile-header .bars{
+    flex: 2;
+    background: grey;
+} 
+
+.mobile-header .bars .menu{
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 40px;
+}
+
+.mobile-header .mobile-title{
+    flex: 8;
+}
+
+.mobile-header .mobile-title ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-header .mobile-title ul li a{
+    color: black;
+    display: block;
+    padding: 21px;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.mobile-header .mobile-title .show {
+    text-align: center;
+    color: grey;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+.page-wrapper {
     height: 590px;
     display: flex;
 }
-.page-wrapper .side-content{
+
+.page-wrapper .side-content {
     height: 124%;
     background: grey;
     flex: 2;
 }
-.page-wrapper .side-content ul{
+
+.page-wrapper .side-content ul {
     list-style: none;
     margin: 0px;
     padding: 0px;
-    
 }
+
 .page-wrapper .side-content ul li a {
     padding: 18px;
     display: block;
@@ -116,41 +212,129 @@ header ul li a:hover{
     color: black;
     font-size: 25px;
 }
-.page-wrapper .side-content ul li a:hover{
+
+.page-wrapper .side-content ul li a:hover {
     background: lightgrey;
 }
-.page-wrapper .main-content{
+
+.page-wrapper .main-content {
     height: 100%;
     flex: 8;
-    padding: 40px 100px 100px;
+    padding: 10px 100px 100px;
     overflow-y: scroll;
     background: rgb(231, 231, 231);
 }
-.page-wrapper .page-title{
+
+.page-wrapper .page-title {
     text-align: center;
     color: grey;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 30px;
 }
-table{
+
+table {
     width: 100%;
     border-collapse: collapse;
     font-size: 25px;
 }
-th,td{
+
+th,
+td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid grey;
-
 }
-form div{
+
+form div {
     margin-bottom: 15px;
 }
-label{
+
+label {
     font-size: 20px;
 }
-#map {
-    height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
-   }
 
+.page-wrapper .main-content .content form .upload {
+    display: flex;
+}
+
+.page-wrapper .main-content .content form .upload .image {
+    flex: 5;
+    margin-right: 10px;
+}
+
+.page-wrapper .main-content .content form .upload .video {
+    flex: 5;
+}
+
+.page-wrapper .main-content .content form .location .loc {
+    display: flex;
+}
+
+.page-wrapper .main-content .content form .location .loc .lat {
+    flex: 5;
+    margin-right: 10px;
+}
+
+.page-wrapper .main-content .content form .location .loc .long {
+    flex: 5;
+}
+
+/* Responsiveness  */
+
+/* Tablet */
+
+@media(max-width:768px) {
+    .page-wrapper .main-content .content form .text-input {
+        width: 383px !important;
+    }
+
+    .page-wrapper .main-content .content form .location .loc {
+        display: block;
+    }
+
+    .page-wrapper .main-content .content form .upload {
+        display: block;
+    }
+
+    .page-wrapper .main-content .content form .topic .text-input {
+        width: 417px !important;
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:425px) {
+    .page-wrapper .side-content{
+        display: none;
+    }
+
+    .mobile{
+        display: block;
+    }
+
+    .nav{
+        display: none;
+    }
+
+    .page-wrapper .main-content {
+        width: 100%;
+        padding: 5px 20px 20px;
+    }
+
+    .page-wrapper .main-content .content form .text-input{
+        width: 350px !important;
+    }
+
+    .page-wrapper .main-content .content form .topic .text-input {
+        width: 380px !important;
+    }
+
+    .page-wrapper .main-content .content form .topic select option.text-input{
+        width: 30px !important;
+    }
+
+    .page-wrapper .main-content .content table{
+        width: 70% !important;
+    }
+}
