@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +8,45 @@
     <link rel="stylesheet" href="../css/report.css">
     <title>Create Report</title>
 </head>
+
 <body>
     <header>
         <div class="logo">
             <img src="../assets/LogoMakr_0sxTjY.png" alt style="height: 60px">
         </div>
-            
-        <ul class="nav" >
-            <li>
-                <a href="../index.html">Sign out</a>
-            </li>
-        </ul>
 
-        <i class="fa fa-bars menu " onclick="showMenu()"></i> 
+        <ul class="nav">
+            <li> <a href="../index.html">Sign out</a></li>
+        </ul>
     </header>
+
+    <div class="mobile">
+        <div class="mobile-header">
+            <div class="bars">
+                <i class="fa fa-bars menu " onclick="showMenu()"></i>
+            </div>
+
+            <div class="mobile-title">
+                <ul>
+                    <li><a href="./create.html" class="show">Create Report</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div id="side-menu" class="side-menu">
         <a href="" id="btn-close" onclick="closeMore()">&times;</a>
         <ul>
-            <li>
-                <a href="../index.html">Sign out</a>
-            </li>
-            <li>
-                <a href="./pages/signin.html">Sign In</a>
-            </li>
+            <li><a href="./create.html" class="show">Create Report</a></li>
+            <li><a href="./list.html">List of Reports</a></li>
+            <li><a href="./resolved.html">Resolved Reports</a></li>
+            <li><a href="./drafted.html">Under Investiation Reports</a></li>
+            <li><a href="./rejected.html">Rejected Reports</a></li>
+            <li><a href="../index.html">Sign Out</a></li>
         </ul>
     </div>
-    <div class="page-wrapper clearfix">
 
+    <div class="page-wrapper clearfix">
         <div class="side-content">
             <ul>
                 <li><a href="./create.html" class="list">Create Report</a></li>
@@ -46,64 +59,68 @@
 
         <div class="main-content">
             <h2 class="page-title">Create Report</h2>
-            <form action="" method="post">
-                <div>
-                    <label>Title</label>
-                    <input type="text" name="title" class="text-input"> 
-                </div>
-                <div>
-                    <label>Topic</label>
-                    <select name="Topic" class="text-input">
-                        <option value="Red-flag" class="text-input">Red-flag</option>
-                        <option value="Intervention" class="text-input">Intervention</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Location</label>
-                    <!-- <input type="text" name="Location" class="text-input">  -->
-                    <!-- <table>
-                        <tbody>
-                            <tr >
-                                <td>Lat</td>
-                                <td><input type="text" name="title" ></td><br>
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                <td>Long</td>
-                                <td><input type="text" name="title" class="text-input"></td>
-                            </tr>
-                        </tbody>
-                    </table> -->
-                    <div id="map"></div>
-                </div>
-                <div>
-                    <label>Comment</label>
-                    <textarea name="Comment" class="text-input"></textarea>
-                </div>
-                <div>
-                    <label>Upload Image</label><br>
-                    <input type="file" name="image" class="text-input" onchange="loadFile(event)"><br>
-                    <img id="output" width="100%" height="500" src="../assets/upload.jpg">
+            <div class="content">
+                <form action="" method="post">
+                    <div>
+                        <label>Title</label>
+                        <input type="text" name="title" class="text-input" style="width: 1070px;" placeholder="Title">
+                    </div>
 
-                </div>
-                <div>
-                    <label>Upload Video</label><br>
-                    <input type="file" name="Video" class="text-input" onchange="loadFiles(event)"><br>
-                    <video id="output1" width="100%" height="500" controls>
-                    </video>
-                </div>
-                <div>
-                    <br>
-                    <a href="./list.html" class="btn" title="Submit">
-                    <h8>Create Report</h8>
-                    </a>
-                </div>
-            </form>
+                    <div class="topic">
+                        <label>Topic</label>
+                        <select name="Topic" class="text-input">
+                            <option value="Red-flag" class="">Red-flag</option>
+                            <option value="Intervention" class="">Intervention</option>
+                        </select>
+                    </div>
 
+                    <div class="location">
+                        <label>Location</label><br>
+                        <div class="loc">
+                            <div class="lat">
+                                <label>Latitude</label>
+                                <input type="text" name="Latitude" class="text-input" style="width: 510px;" placeholder="Latitude">
+                            </div>
+
+                            <div class="long">
+                                <label>Longitude</label>
+                                <input type="text" name="Longitude" class="text-input" style="width: 510px;" placeholder="Longitude">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Comment</label>
+                        <textarea name="Comment" class="text-input" style="width: 1070px;" placeholder="Comment here"></textarea>
+                    </div>
+
+                    <div class="upload">
+                        <div class="image">
+                            <label>Upload Image</label><br><br>
+                            <input type="file" name="image" class="text-input" style="width: 510px;"onchange="loadFile(event)" ><br><br>
+                            <img id="output" width="100%" height="400" src="../assets/upload.jpg">
+
+                        </div>
+
+                        <div class="video">
+                            <label>Upload Video</label><br><br>
+                            <input type="file" name="Video" class="text-input" onchange="loadFiles(event)" style="width: 510px;"><br><br>
+                            <video id="output1" width="100%" height="400" controls>
+                            </video>
+                        </div>
+                    </div>
+
+                    <div>
+                        <br>
+                        <a href="./list.html" class="btn" title="Submit">
+                            <h8>Create Report</h8>
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <script src="../script/scripts.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAzZZMo8pLCqKzTUd6PgZg6yTTbVhInDg&callback=initMap"></script>
 </body>
+
 </html>
