@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,49 @@
     <link rel="stylesheet" href="../css/report.css">
     <title>Resolved Reports</title>
 </head>
+
 <body>
     <header>
         <div class="logo">
             <img src="../assets/LogoMakr_0sxTjY.png" alt style="height: 60px">
         </div>
-            
-        <ul class="nav" >
-            <li>
-                <a href="../index.html">Sign out</a>
-            </li>
+
+        <ul class="nav">
+            <li><a href="../index.html">Sign out</a></li>
         </ul>
 
-        <i class="fa fa-bars menu " onclick="showMenu()"></i> 
     </header>
+    <div class="mobile">
+        <div class="mobile-header">
+            <div class="bars">
+                <i class="fa fa-bars menu " onclick="showMenu()"></i>
+            </div>
+
+            <div class="mobile-title">
+                <ul>
+                    <li><a href="./resolved.html" class="show">Resolved Reports</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div id="side-menu" class="side-menu">
         <a href="" id="btn-close" onclick="closeMore()">&times;</a>
         <ul>
-            <li>
-                <a href="../index.html">Sign out</a>
-            </li>
-            <li>
-                <a href="./pages/signin.html">Sign In</a>
-            </li>
+            <li><a href="./create.html">Create Report</a></li>
+            <li><a href="./list.html">List of Reports</a></li>
+            <li><a href="./resolved.html" class="show">Resolved Reports</a></li>
+            <li><a href="./drafted.html">Under Investiation Reports</a></li>
+            <li><a href="./rejected.html">Rejected Reports</a></li>
+            <li><a href="../index.html">Sign Out</a></li>
         </ul>
     </div>
-    <div class="page-wrapper clearfix">
 
+    <div class="page-wrapper clearfix">
         <div class="side-content">
             <ul>
                 <li><a href="./create.html">Create Report</a></li>
-                <li><a href="./list.html" >List of Reports</a></li>
+                <li><a href="./list.html">List of Reports</a></li>
                 <li><a href="./resolved.html" class="list">Resolved Reports</a></li>
                 <li><a href="./drafted.html">Under Investiation Reports</a></li>
                 <li><a href="./rejected.html">Rejected Reports</a></li>
@@ -46,31 +59,35 @@
 
         <div class="main-content">
             <h2 class="page-title">Resolved Reports</h2>
+            <div class="content">
+                <table>
+                    <thead>
+                        <th>N</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </thead>
 
-            <table>
-                <thead>
-                    <th>N</th>
-                    <th>Title</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>The first report</td>
-                        <td>Red-flag</td>
-                        <td>Resolved</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>The fifth report</td>
-                        <td>Intervention</td>
-                        <td>Resolved</td>
-                    </tr>
-                </tbody>
-            </table>
-
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>The first report</td>
+                            <td>Red-flag</td>
+                            <td>Resolved</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>The fifth report</td>
+                            <td>Intervention</td>
+                            <td>Resolved</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    <script src="../script/scripts.js"></script>
 </body>
+
 </html>
