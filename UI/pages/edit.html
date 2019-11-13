@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/report.css">
-    <title>Admin Edit</title>
+    <title>Edit Report</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
             <div class="mobile-title">
                 <ul>
-                        <li><a href="./admin-edit.html" class="show">Edit Report</a></li>
+                        <li><a href="./edit.html" class="show">Edit Report</a></li>
                     </ul>
             </div>
         </div>
@@ -37,8 +37,12 @@
     <div id="side-menu" class="side-menu">
         <a href="" id="btn-close" onclick="closeMore()">&times;</a>
         <ul>
-            <li><a href="./admin.html">List of Reports</a></li>
-            <li><a href="./admin-edit.html" class="show">Edit Report</a></li>
+            <li><a href="./create.html">Create Report</a></li>
+            <li><a href="./list.html">List of Reports</a></li>
+            <li><a href="./edit.html" class="show">Edit Report</a></li>
+            <li><a href="./resolved.html">Resolved Reports</a></li>
+            <li><a href="./drafted.html">Under Investiation Reports</a></li>
+            <li><a href="./rejected.html">Rejected Reports</a></li>
             <li><a href="../index.html">Sign Out</a></li>
         </ul>
     </div>
@@ -46,8 +50,12 @@
     <div class="page-wrapper clearfix">
         <div class="side-content">
             <ul>
-                <li><a href="./admin.html">List of Reports</a></li>
-                <li><a href="./admin-edit.html" class="list">Edit Report</a></li>
+                <li><a href="./create.html">Create Report</a></li>
+                <li><a href="./list.html">List of Reports</a></li>
+                <li><a href="./edit.html" class="list">Edit Report</a></li>
+                <li><a href="./resolved.html">Resolved Reports</a></li>
+                <li><a href="./drafted.html">Under Investiation Reports</a></li>
+                <li><a href="./rejected.html">Rejected Reports</a></li>
             </ul>
         </div>
 
@@ -82,11 +90,7 @@
 
                     <div class="Status">
                             <label>Status</label>
-                            <select name="Status" class="text-input">
-                                <option value="Under Investigation">Under Investigation</option>
-                                <option value="Resolved">Resolved</option>
-                                <option value="Rejected">Rejected</option>
-                            </select>
+                            <p>Under Investigation</p>
                     </div>
 
                     <div>
@@ -114,9 +118,16 @@
 
                     <div>
                         <br>
-                        <a href="./admin.html" class="btn" title="Submit">
+                        <a href="./list.html" class="btn" title="Submit">
                             <h8>Edit & Save</h8>
                         </a>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <a href="./list.html" class="btn-del" title="Delete">
+                            <h8>Delete</h8>
+                        </a>
+
                     </div>
                 </form>
             </div>
