@@ -19,6 +19,12 @@ body {
     font-weight: bolder;
 }
 
+.Tedit{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
 .text-input {
     padding: .7rem 1rem;
     display: block;
@@ -45,6 +51,21 @@ body {
 
 .btn:hover {
     background: lightgrey;
+}
+
+.btn-del{
+    padding: .5rem 1rem;
+    background: red;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    font-size: 19px;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.btn-del:hover {
+    background: darkred;
 }
 
 #btn-close{
@@ -218,7 +239,7 @@ header ul li a:hover {
 }
 
 .page-wrapper .main-content {
-    height: 100%;
+    height: 105%;
     flex: 8;
     padding: 10px 100px 100px;
     overflow-y: scroll;
