@@ -1,0 +1,51 @@
+{
+  "name": "broadcaster",
+  "version": "1.0.0",
+  "description": "Corruption is a huge bane to Africa’s development. African countries must develop novel and\r localized solutions that will curb this menace, hence the birth of Broadcaster. Broadcaster\r enables any/every citizen to bring any form of corruption to the notice of appropriate authorities\r and the general public. Users can also report on things that need government intervention.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node Server/app.js",
+    "start": "babel-node Server/app.js",
+    "test": "nyc --export=text mocha --require @babel/register ./Server/tests/*.js --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skemc/Broadcaster.git"
+  },
+  "keywords": [],
+  "author": "Eric",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Skemc/Broadcaster/issues"
+  },
+  "homepage": "https://github.com/Skemc/Broadcaster#readme",
+  "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
+    "@babel/runtime": "^7.7.2",
+    "@hapi/joi": "^16.1.7",
+    "babel": "^6.23.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "coveralls": "^3.0.7",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "nyc": "^14.1.1",
+    "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.2.2",
+    "nodemon": "^1.19.4"
+  }
+}
