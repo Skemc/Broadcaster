@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 app.use('/api/v1', myRoutes);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 app.listen(port, ()=>{
     console.log(`connected on ${port}`);
