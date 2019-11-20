@@ -4,20 +4,22 @@ import dotenv from 'dotenv';
 import userValidations from '../helpers/UserValidation';
 import users from '../models/usersModel';
 
+dotenv.config();
+
 class UserController {
 
-    static signup (req,res) {
-        
+    static signup(req, res) {
+
         const { error } = userValidations.validateSignup(req.body);
-        if (error){
-            return res.status(400).send({ status: 400, error: error.details[0].message });
+        if (error) {
+            return res.status(400).send({ status: 400, error: error.message });
         }
 
         const { firstName, lastName, userName, email, password, phoneNumber } = req.body;
         const isUserExist = users.find(user => user.email === email);
 
-        if(isUserExist) {
-            return res.status(409).send({ status: 409, error: "This user already exists"});
+        if (isUserExist) {
+            return res.status(409).send({ status: 409, error: "This user already exists" });
         }
 
         const hashPassword = bcrypt.hashSync(password, 10);
@@ -32,10 +34,44 @@ class UserController {
         }
 
         users.push(newUser);
-        const {passwords, ...data} = newUser;
-        return res.status(201).send({  status: 201, data });
+        const { passwords, ...data } = newUser;
+        return res.status(201).send({ status: 201, data });
     }
 
+    static signin(req, res) {
+        const { error } = userValidations.validateSignin(req.body)
+        if (error) {
+            return res.status(400).send({ status: 400, error: error.message });
+        }
+        const isUserExist = users.find(user => user.email === req.body.email);
+        if (!isUserExist) {
+            return res.status(401).send({
+                status: 401,
+                message: "User dont exist"
+
+            });
+        }
+        else {
+            const isPassword = bcrypt.compare(req.body.password, isUserExist.password);
+            if (isPassword) {
+                const token = jwt.sign({
+                    id: isUserExist.id,
+                    email: isUserExist.email,
+                    isadmin: isUserExist.isAdmin
+                }, process.env.secretKey);
+
+                res.status(200).send({
+                    status: 200,
+                    message: "User is successfully logged in",
+                    data: token
+                });
+            }
+            else return res.status(401).send({
+                status: 401,
+                message: "Incorrect password"
+            });
+        }
+    }
 }
 
 export default UserController

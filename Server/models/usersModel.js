@@ -11,12 +11,12 @@ const users = [
     },
     
     {
-        id: 2,
+        id: 3,
         firstName : "Eric",
         lastName : "skemc",
         userName : "skemc-eric",
-        email : "eric2@gmail.com",
-        password : "$2b$10$hjXgNwYIzx8Hxeg.silh3usMzPF.TGMV3lMY55LACDhv19TnrtrMW",
+        email : "eric@gmail.com",
+        password : "$2y$10$79Jyp3tWhT/se1bJ7xF6OuhXhpDJBDlPz15a0E5DIWEQ61kbnU9ea",
         phoneNumber : "0785824928",
         isAdmin: true
     }
