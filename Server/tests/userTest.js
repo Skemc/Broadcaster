@@ -8,19 +8,18 @@ dotenv.config();
 chai.use(chaiHttp);
 chai.should();
 
-const password = process.env.password;
 
 describe("Signup tests", () => {
-
+  
   it("User should be able to signup when data are valid ", (done) => {
     chai.request(app).post("/api/v1/auth/signup").send(mock.signup).end((err, res) => {
-      res.should.have.status(201);
+      res.should.have.status(201); 
       res.body.should.be.an("object");
       done();
     });
   });
 
-  it("User should not be able to signup with an invalid username ", (done) => {
+  it("User should not be able to signup when username is empty", (done) => {
     const { userName, ...data } = mock.signup;
     chai.request(app).post("/api/v1/auth/signup").send(data).end((err, res) => {
       res.should.have.status(400);
@@ -28,8 +27,8 @@ describe("Signup tests", () => {
       done();
     });
   });
-
-  it("User should not be able to signup with an invalid phoneNumber", (done) => {
+  
+  it("User should not be able to signup when data are invalid phoneNumber", (done) => {
     const { phoneNumber, ...data } = mock.signup;
     chai.request(app).post("/api/v1/auth/signup").send(data).end((err, res) => {
       res.should.have.status(400);
@@ -37,8 +36,8 @@ describe("Signup tests", () => {
       done();
     });
   });
-
-  it("User should not be able to signup with an invalid password", (done) => {
+  
+  it("User should not be able to signup when data are invalid password", (done) => {
     const { password, ...data } = mock.signup;
     chai.request(app).post("/api/v1/auth/signup").send(data).end((err, res) => {
       res.should.have.status(400);
@@ -47,7 +46,7 @@ describe("Signup tests", () => {
     });
   });
 
-  it("User should not be able to signup with an invalid firstname", (done) => {
+  it("User should not be able to signup when invalid firstname", (done) => {
     const { firstName, ...data } = mock.signup;
     chai.request(app).post("/api/v1/auth/signup").send(data).end((err, res) => {
       res.should.have.status(400);
@@ -56,7 +55,7 @@ describe("Signup tests", () => {
     });
   });
 
-  it("User should not be able to signup with an invalid lastname", (done) => {
+  it("User should not be able to signup when invalid lastname", (done) => {
     const { lastName, ...data } = mock.signup;
     chai.request(app).post("/api/v1/auth/signup").send(data).end((err, res) => {
       res.should.have.status(400);
@@ -64,8 +63,8 @@ describe("Signup tests", () => {
       done();
     });
   });
-
-  it("User should not be able to signup with an invalid email", (done) => {
+  
+  it("User should not be able to signup when invalid email", (done) => {
     const { email, ...data } = mock.signup;
     chai.request(app).post("/api/v1/auth/signup").send(data).end((err, res) => {
       res.should.have.status(400);
@@ -73,7 +72,7 @@ describe("Signup tests", () => {
       done();
     });
   });
-
+  
   it("User should not be able to signup when user already exist", (done) => {
     chai.request(app).post("/api/v1/auth/signup").send(mock.signup).end((err, res) => {
       res.should.have.status(409);
@@ -81,6 +80,7 @@ describe("Signup tests", () => {
       done();
     });
   });
+
 });
 
 describe('Signin tests', () => {
@@ -92,9 +92,9 @@ describe('Signin tests', () => {
       done();
     });
   });
-  
+
   it("User should not be able to signin with a wrong password ", (done) => {
-    chai.request(app).post("/api/v1/auth/signin").send(mock.invalidSignin).end((err, res) => {
+    chai.request(app).post("/api/v1/auth/signin").send(mock.invalidSigninEmail).end((err, res) => {
       res.should.have.status(401);
       res.body.should.be.an("object");
       done();
@@ -120,10 +120,11 @@ describe('Signin tests', () => {
   });
 
   it("User should not be able to signin with a wrong account", (done) => {
-    chai.request(app).post("/api/v1/auth/signin").send(mock.invalidSignin).end((err, res) => {
+    chai.request(app).post("/api/v1/auth/signin").send(mock.invalidSigninPassword).end((err, res) => {
       res.should.have.status(401);
       res.body.should.be.an("object");
       done();
     });
   });
+  
 });

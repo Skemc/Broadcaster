@@ -14,28 +14,32 @@ class UserController {
         if (error) {
             return res.status(400).send({ status: 400, error: error.message });
         }
-
-        const { firstName, lastName, userName, email, password, phoneNumber } = req.body;
+        const { firstName, lastName, userName, email, phoneNumber } = req.body;
         const isUserExist = users.find(user => user.email === email);
 
         if (isUserExist) {
             return res.status(409).send({ status: 409, error: "This user already exists" });
         }
 
-        const hashPassword = bcrypt.hashSync(password, 10);
+        const hashPassword = bcrypt.hashSync(req.body.password, 10);
         const newUser = {
             id: users.length + 1,
             firstName,
             lastName,
             userName,
             email,
-            passwords: hashPassword,
+            password: hashPassword,
             phoneNumber
-        }
-
+        }        
         users.push(newUser);
-        const { passwords, ...data } = newUser;
-        return res.status(201).send({ status: 201, data });
+        const token = jwt.sign({ id: newUser.id, email: newUser.email }, process.env.secretKey)
+        const { password, ...data } = newUser;
+        data.token = token;
+        return res.status(201).send({
+            status: 201, message: "User created successfully ",
+            data
+        });
+        
     }
 
     static signin(req, res) {
@@ -44,33 +48,36 @@ class UserController {
             return res.status(400).send({ status: 400, error: error.message });
         }
         const isUserExist = users.find(user => user.email === req.body.email);
+
         if (!isUserExist) {
             return res.status(401).send({
                 status: 401,
-                message: "User dont exist"
+                message: "user dont exist"
 
             });
         }
-        else {
-            const isPassword = bcrypt.compare(req.body.password, isUserExist.password);
-            if (isPassword) {
-                const token = jwt.sign({
-                    id: isUserExist.id,
-                    email: isUserExist.email,
-                    isadmin: isUserExist.isAdmin
-                }, process.env.secretKey);
 
-                res.status(200).send({
-                    status: 200,
-                    message: "User is successfully logged in",
-                    data: token
-                });
-            }
-            else return res.status(401).send({
+        const isPassword = bcrypt.compareSync(req.body.password, isUserExist.password);
+        
+        if (!isPassword) {
+            return res.status(401).send({
                 status: 401,
                 message: "Incorrect password"
             });
         }
+        const token = jwt.sign({
+            id: isUserExist.id,
+            email: isUserExist.email,
+            isadmin: isUserExist.isAdmin
+        }, process.env.secretKey);
+
+        return res.status(200).send({
+            status: 200,
+            message: 'User logged in successfully',
+            token
+        })
+
+
     }
 }
 
