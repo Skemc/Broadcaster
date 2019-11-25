@@ -38,5 +38,16 @@ class ReportController {
         });
     }
 
+    static getAllRedFlagRecords(req,res){
+
+        const { email } = req.user;
+        const isUserExist = users.find(u=>u.email===email);
+    
+        if(!isUserExist){
+            return res.status(401).send({status: 401, message: 'User not exist'});
+        }
+        return res.status(200).send({status: 200, message: 'Data fetched', data: reports});
+    }
+
 }
 export default ReportController;
