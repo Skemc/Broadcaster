@@ -12,11 +12,11 @@
 <body>
     <header>
         <div class="logo">
-            <img src="../assets/LogoMakr_0sxTjY.png" alt style="height: 60px">
+            <img src="../assets/LogoMakr_0sxTjY.png">
         </div>
 
         <ul class="nav">
-            <li><a href="../index.html">Sign out</a></li>
+            <li><a class="btnn" href="../index.html">Sign out</a></li>
         </ul>
     </header>
 
@@ -38,10 +38,7 @@
         <a href="" id="btn-close" onclick="closeMore()">&times;</a>
         <ul>
             <li><a href="./create.html">Create Report</a></li>
-            <li><a href="./list.html">List of Reports</a></li>
-            <li><a href="./resolved.html">Resolved Reports</a></li>
-            <li><a href="./drafted.html">Under Investiation Reports</a></li>
-            <li><a href="./rejected.html" class="show">Rejected Reports</a></li>
+            <li><a href="./list.html" class="show">List of Reports</a></li>
             <li><a href="../index.html">Sign Out</a></li>
         </ul>
     </div>
@@ -50,15 +47,27 @@
         <div class="side-content">
             <ul>
                 <li><a href="./create.html">Create Report</a></li>
-                <li><a href="./list.html">List of Reports</a></li>
-                <li><a href="./resolved.html">Resolved Reports</a></li>
-                <li><a href="./drafted.html">Under Investiation Reports</a></li>
-                <li><a href="./rejected.html" class="list">Rejected Reports</a></li>
+                <li><a href="./list.html" class="list">List of Reports</a></li>
             </ul>
         </div>
 
         <div class="main-content">
             <h2 class="page-title">Rejected Reports</h2>
+            
+            <div class="drop">
+                <h2 class="drop-title" onclick="showMore()">more thread</h2>
+                <i class="fa fa-angle-double-down showing"  onclick="showMore()"></i>
+                <i id="removing" class="fa fa-angle-double-down removing"  onclick="closeDrop()"></i>
+            </div>
+
+            <div id="more-icon" class="more-icon">
+                <ul id="icon">
+                    <li><a href="./resolved.html">Resolved Reports</a></li><br>
+                    <li><a href="./drafted.html">Drafted Reports</a></li><br>
+                    <li><a href="./rejected.html" class="show">Rejected Reports</a></li>
+                </ul>
+            </div>
+
             <div class="content">
                 <table>
                     <thead>

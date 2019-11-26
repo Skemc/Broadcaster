@@ -2,7 +2,7 @@ import Joi from '@hapi/joi';
 
 class reportValidation {
    static validateReport = (body) => {
-      const schema = Joi.object().keys({
+      const schema = Joi.object({
          title: Joi.string().required().error(new Error('Title of report is required and not allowed to empty')),
          type: Joi.string().valid('red-flag', 'intervention').required().error(new Error('Type of report must be a Red-flag or Intervention and not allowed to empty')),
          comment: Joi.string().required().error(new Error('Comment of report is required and not allowed to empty')),
