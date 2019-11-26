@@ -15,8 +15,8 @@ const users = [
         firstName : "Eric",
         lastName : "skemc",
         userName : "skemc-eric",
-        email : "eric@gmail.com",
-        password : "$2y$10$79Jyp3tWhT/se1bJ7xF6OuhXhpDJBDlPz15a0E5DIWEQ61kbnU9ea",
+        email : "eric6@gmail.com",
+        password : "$2y$10$bfCLjcykPtlYcQThRvkkj.vWw.L0fhlEBhqNRuJ5rPalr3FKuqemy",
         phoneNumber : "0785824928",
         isAdmin: true
     }
@@ -26,10 +26,3 @@ const users = [
 export default users;
 
 
-
-// id” : Integer ,
-// “firstname” : String ,
-// “lastname” : String ,
-// “email” : String ,
-// ”phoneNumber” : String,
-// “username”

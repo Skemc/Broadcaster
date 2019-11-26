@@ -17,6 +17,11 @@ header{
     height: inherit;
     margin-left: 0em;
     padding-left: 20px;
+    margin-top: 7px;
+}
+
+.logo img{
+    height: 50px;
 }
 
 header ul{
@@ -25,6 +30,14 @@ header ul{
     padding: 0px;
     list-style: none;
 }
+
+header .nav .btn{
+    border: 3px solid black;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 25px;
+}
+
 header .menu{
     display: none;
 }
@@ -56,8 +69,8 @@ header ul li a{
     font-size: 1.1em;
 }
 header ul li a:hover{
-    font-weight: 900;
-    transition: 0.5s;
+    color: grey;
+    background: black;
 }
 
 .footer{
@@ -168,7 +181,6 @@ footer p{
         padding: 0px;
         overflow-x: hidden;
         height: 764px;
-        /* transform: translate(%); */
         position: absolute;
     }
 

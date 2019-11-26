@@ -2,7 +2,7 @@ const mock = {
     signup: {
         firstName: 'Eric',
         lastName: 'skemc',
-        email: 'eric6@gmail.com',
+        email: 'eric@gmail.com',
         password: 'Rwanda123',
         userName: 'skemc-eric',
         phoneNumber: '0785824928'
@@ -10,8 +10,8 @@ const mock = {
     },
 
     signin: {
-        email: 'eric6@gmail.com',
-        password: 'Rwanda123'
+        email: 'eric8@gmail.com',
+        password: 'Rwanda000'
     },
 
     invalidSigninEmail: {
@@ -33,7 +33,7 @@ const mock = {
     },
 
     rightToken: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJlcmljQGdtYWlsLmNvbSIsImlhdCI6MTU3NDI2NjYyN30.U5h0_Knk_Pu72JfuIeEtDFBPNmydDAM-TyfSEI_dUTY'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJlcmljNkBnbWFpbC5jb20iLCJpYXQiOjE1NzQ3NzQ5MjN9.u_2_Ilq-wmFFslfQkOtbDuVFbA76eZ9eVwF0b-Ivp2c'
     },
 
     wrongToken: {
@@ -41,7 +41,7 @@ const mock = {
     },
 
     invalidToken: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJwYXBhQGdtYWlsLmNvbSIsImlhdCI6MTU3NDI2ODA4NH0.jIxrCzf8yPd6sXhhrjFoqei_10JeWd9h5Ocrfv6jvwQ'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJkbm5ka2FAZ21haWwuY29tIiwiaWF0IjoxNTc0Nzc3NDI3fQ.EQmvtlvfuMswDpHVGWbJ6q64qai7LACeppbcJNLumZ4'
     }
 };
 

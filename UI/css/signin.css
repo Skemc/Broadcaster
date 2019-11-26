@@ -85,7 +85,7 @@ p{
 p a{
     color: black;
     font-weight: bolder;
-    text-decoration: none;
+    text-decoration: underline;
 }
 p a:hover{
     font-size: 1.1em;
