@@ -1,6 +1,6 @@
 const mock = {
     signup: {
-        firstName: 'Eric',
+        firstName: 'eric',
         lastName: 'skemc',
         email: 'eric@gmail.com',
         password: 'Rwanda123',

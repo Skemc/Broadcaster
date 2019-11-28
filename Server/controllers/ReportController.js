@@ -7,7 +7,8 @@ class ReportController {
 
         const { error } = reportValidation.validateReport(req.body);
         if (error) {
-            return res.status(400).send({ status: 400, error: error.message });
+            const valError = error.details.map( (e) => e.message);
+            return res.status(400).send({ status: 400, error: valError.join(",").replace(/"/g, '')});
         }
         const owner = req.user.email;
         const { title, type, comment, locationLat, locationLong } = req.body;
@@ -30,7 +31,7 @@ class ReportController {
             status: 'Draft',
             createdOn: new Date(),
             createdBy: owner
-        }
+        };
         reports.push(newReport);
         const { ...data } = newReport;
         return res.status(200).send({
@@ -40,7 +41,7 @@ class ReportController {
 
     static getAllRedFlagRecords(req,res){
 
-        const { email } = req.user;
+        var { email } = req.user;
         const isUserExist = users.find(u=>u.email===email);
     
         if(!isUserExist){

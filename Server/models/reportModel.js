@@ -10,5 +10,5 @@ const reports = [
         createdOn: new Date(),
         createdBy: 'eric@gmail.com'
     }
-]
+];
 export default reports;
