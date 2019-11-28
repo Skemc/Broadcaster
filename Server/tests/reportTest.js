@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import mock from './mockdata/mockdata'
+import mock from './mockdata/mockdata';
 
 chai.use(chaiHttp);
 chai.should();
@@ -15,7 +15,7 @@ describe('reports tests', () => {
                 res.should.have.status(200);
                 res.body.should.be.an("object");
                 done();
-            })
+            });
     });
 
     it("User should not be able to create red-flag when token is invalid ", (done) => {

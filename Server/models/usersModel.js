@@ -1,9 +1,9 @@
 const users = [
     {
         id: 1,
-        firstName : "Eric",
+        firstName : "eric",
         lastName : "skemc",
-        userName : "skemc-eric1",
+        userName : "skemc-eric",
         email : "eric8@gmail.com",
         password : "$2b$10$hjXgNwYIzx8Hxeg.silh3usMzPF.TGMV3lMY55LACDhv19TnrtrMW",
         phoneNumber : "0785824928",
@@ -12,7 +12,7 @@ const users = [
     
     {
         id: 3,
-        firstName : "Eric",
+        firstName : "eric",
         lastName : "skemc",
         userName : "skemc-eric",
         email : "eric6@gmail.com",
