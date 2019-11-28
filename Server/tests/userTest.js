@@ -2,7 +2,7 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../app";
 import dotenv from "dotenv";
-import mock from './mockdata/mockdata'
+import mock from './mockdata/mockdata';
 
 dotenv.config();
 chai.use(chaiHttp);
