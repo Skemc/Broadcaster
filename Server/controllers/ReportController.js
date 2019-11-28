@@ -63,5 +63,22 @@ class ReportController {
         return res.status(200).send({status: 200, message: 'Data fetched', data: findRecord});
     }
 
+    static deleteRedFlagRecords(req,res){
+    
+        const { id } = req.params;
+        const { email } = req.user;
+        const findRecord = reports.find(c=>c.id==id);
+        const isOwner = reports.find(s=>s.createdBy==email);
+
+        if(!isOwner){
+            return res.status(403).send({status: 403, message: 'you are not the owner'});
+        }
+        if(!findRecord){
+            return res.status(404).send({status: 404, message: 'Record not found'});
+        }
+        reports.splice(reports.indexOf(findRecord, 1));
+        return res.status(200).send({status: 200, message: 'Deleted successfully'});
+    }
+
 }
 export default ReportController;

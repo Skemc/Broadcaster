@@ -11,8 +11,8 @@ class UserController {
     static signup(req, res) {
         const { error } = userValidations.validateSignup(req.body);
         if (error) {
-            const valError = error.details.map( (e) => e.message);
-            return res.status(400).send({ status: 400, error: valError.join(",").replace(/"/g, '')});
+            const valError = error.details.map((e) => e.message);
+            return res.status(400).send({ status: 400, error: valError.join(",").replace(/"/g, '') });
         }
         const { firstName, lastName, userName, email, phoneNumber } = req.body;
         const isUserExist = users.find(user => user.email === email);
@@ -28,7 +28,7 @@ class UserController {
             email,
             password: hashPassword,
             phoneNumber
-        };        
+        };
         users.push(newUser);
         const token = jwt.sign({ id: newUser.id, email: newUser.email }, process.env.secretKey);
         const { password, ...data } = newUser;
@@ -42,7 +42,8 @@ class UserController {
     static signin(req, res) {
         const { error } = userValidations.validateSignin(req.body);
         if (error) {
-            return res.status(400).send({ status: 400, error: error.message });
+            const valError = error.details.map((e) => e.message);
+            return res.status(400).send({ status: 400, error: valError.join(",").replace(/"/g, '') });
         }
         const isUserExist = users.find(user => user.email === req.body.email);
         if (!isUserExist) {
@@ -68,10 +69,9 @@ class UserController {
             status: 200,
             message: 'User logged in successfully',
             token
-        })
-      
         });
     }
 }
+
 
 export default UserController;
