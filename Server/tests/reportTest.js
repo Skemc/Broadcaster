@@ -134,5 +134,35 @@ describe('reports tests', () => {
             });
     });
 
+    it("User should not be able to view single red-flag created when user not registered", (done) => {
+        chai.request(app).get(`/api/v1/red-flags/${1}`)
+            .set('auth', mock.invalidToken.token)
+            .end((err, res) => {
+                res.should.have.status(401);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should be able to view a single red-flag record", (done) => {
+        chai.request(app).get(`/api/v1/red-flags/${1}`)
+            .set('auth', mock.rightToken.token)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should not be able to view a red-flag when not found", (done) => {
+        chai.request(app).get(`/api/v1/red-flags/${100}`)
+            .set('auth', mock.rightToken.token)
+            .end((err, res) => {
+                res.should.have.status(404);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
 
 });

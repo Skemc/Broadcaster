@@ -9,6 +9,7 @@ class UserValidations {
          email: Joi.string().regex(/^\S+@[\w-]+\.[A-Za-z ]{2,}$/).required(),
          password: Joi.string().regex(/^[A-Za-z0-9]{8,}/).required(),
          phoneNumber: Joi.string().required(),
+
       });
 
       return schema.validate(body, {abortEarly: false});
