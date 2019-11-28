@@ -164,5 +164,34 @@ describe('reports tests', () => {
             });
     });
 
+    it("User should not be able to delete red-flag when not found", (done) => {
+        chai.request(app).delete(`/api/v1/red-flags/${100}`)
+            .set('auth', mock.rightToken.token)
+            .end((err, res) => {
+                res.should.have.status(404);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should be able to delete red-flag", (done) => {
+        chai.request(app).delete(`/api/v1/red-flags/${1}`)
+            .set('auth', mock.rightToken.token)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should not be able to delete red-flag when not owner", (done) => {
+        chai.request(app).delete(`/api/v1/red-flags/${1}`)
+            .set('auth', mock.invalidToken.token)
+            .end((err, res) => {
+                res.should.have.status(403);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
 
 });

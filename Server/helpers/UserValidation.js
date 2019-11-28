@@ -17,8 +17,8 @@ class UserValidations {
 
    static validateSignin (body) {
      const schema = Joi.object({
-        email: Joi.string().regex(/^\S+@[\w-]+\.[A-Za-z ]{2,}$/).required().error(new Error('Email of user must be valid and is required and not allowed to empty')),
-        password: Joi.string().regex(/^[A-Za-z0-9]{8,}/).required().error(new Error('Password must have an Uppercase, Lowercase and a number and not allowed to empty')),
+        email: Joi.string().regex(/^\S+@[\w-]+\.[A-Za-z ]{2,}$/).required(),
+        password: Joi.string().required(),
     });                     
 
      return schema.validate(body);

@@ -6,8 +6,9 @@ dotenv.config();
 const verifyUser = (req, res, next) => {
 
   try {
-    if (!req.headers.auth)
-      res.status(401).send({ status: 401, error:'Insert token'});
+    if (!req.headers.auth) {
+        res.status(401).send({ status: 401, error:'Insert token'});
+      }
       
     jwt.verify(req.headers.auth, process.env.secretKey, (err, result) => {
       if (err) {
