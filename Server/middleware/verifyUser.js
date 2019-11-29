@@ -7,14 +7,14 @@ const verifyUser = (req, res, next) => {
 
   try {
     if (!req.headers.auth) {
-        res.status(401).send({ status: 401, error:'Insert token'});
+        res.status(401).send({ status: 401, error:'Authentication required'});
       }
       
     jwt.verify(req.headers.auth, process.env.secretKey, (err, result) => {
       if (err) {
         res.status(401).json({
           status: 401,
-          error: 'Invalid token'
+          error: 'Invalid authentication'
         });
       } else {
         req.user = result;

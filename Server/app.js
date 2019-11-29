@@ -12,6 +12,20 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 app.use('/api/v1', myRoutes);
 
+app.get('/'), (req,res) => {
+    res.status(200).json({
+      status:200,
+      message: 'Welcome to Broadcaster'
+});
+};
+
+app.use('*', (req, res)=>{
+    return res.status(404).json({
+        status: 404,
+        error: 'the route does not found'
+    });
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, ()=>{

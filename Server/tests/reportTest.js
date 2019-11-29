@@ -81,17 +81,6 @@ describe('reports tests', () => {
             });
     });
 
-    it("User should not be able to create red-flag with no comment ", (done) => {
-        const { comment, ...data } = mock.report;
-        chai.request(app).post("/api/v1/red-flags")
-            .set('auth', mock.rightToken.token)
-            .send(data).end((err, res) => {
-                res.should.have.status(400);
-                res.body.should.be.an("object");
-                done();
-            });
-    });
-
     it("User should not be able to create red-flag with no location latitude ", (done) => {
         const { locationLat, ...data } = mock.report;
         chai.request(app).post("/api/v1/red-flags")
@@ -189,6 +178,46 @@ describe('reports tests', () => {
             .set('auth', mock.invalidToken.token)
             .end((err, res) => {
                 res.should.have.status(403);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should be able to edit red-flag location", (done) => {
+        chai.request(app).patch(`/api/v1/red-flags/location/${2}`)
+            .set('auth', mock.rightToken.token)
+            .send(mock.editLocation).end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should not be able to edit red-flag location when is not owner", (done) => {
+        chai.request(app).patch(`/api/v1/red-flags/location/${1}`)
+            .set('auth', mock.invalidToken.token)
+            .send(mock.editLocation).end((err, res) => {
+                res.should.have.status(403);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should not be able to edit red-flag location when already edited", (done) => {
+        chai.request(app).patch(`/api/v1/red-flags/location/${2}`)
+            .set('auth', mock.rightToken.token)
+            .send(mock.editLocation).end((err, res) => {
+                res.should.have.status(409);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should not be able to edit red-flag location when not found", (done) => {
+        chai.request(app).patch(`/api/v1/red-flags/location/${100}`)
+            .set('auth', mock.rightToken.token)
+            .send(mock.editLocation).end((err, res) => {
+                res.should.have.status(404);
                 res.body.should.be.an("object");
                 done();
             });

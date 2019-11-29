@@ -8,5 +8,6 @@ router.post('/red-flags', verifyUser, ReportController.createRedFlag);
 router.get('/red-flags', verifyUser, ReportController.getAllRedFlagRecords);
 router.get('/red-flags/:id', verifyUser, ReportController.getOneRedFlagRecords);
 router.delete('/red-flags/:id', verifyUser, ReportController.deleteRedFlagRecords);
+router.patch('/red-flags/location/:id', verifyUser, ReportController.editRedFlagLocationRecords);
 
 export default router;
