@@ -31,7 +31,15 @@ const mock = {
         locationLat: '400',
         locationLong: '500'
     },
+    editComment: {
+        comment: " killed a person"
+    },
 
+    editLocation: {
+        locationLat: '08923',
+        locationLong: '0894'
+    },
+    
     rightToken: {
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJlcmljNkBnbWFpbC5jb20iLCJpYXQiOjE1NzQ3NzQ5MjN9.u_2_Ilq-wmFFslfQkOtbDuVFbA76eZ9eVwF0b-Ivp2c'
     },

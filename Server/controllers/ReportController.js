@@ -104,5 +104,31 @@ class ReportController {
         });
             return res.status(200).send({status: 200, message: 'Eddited successfully', data});
     }
+
+    static editRedFlagCommentRecords(req,res){
+        const { comment } = req.body;
+        const { id } = req.params;
+        const { email } = req.user;
+        const findRecord = reports.find(c => c.id == id);
+        const isEdited = reports.find(e => e.comment == comment);
+
+ 
+        if (!findRecord) {
+            return res.status(404).send({status: 404, message: 'record not found'});
+        }
+        if (isEdited) {
+            return res.status(409).send({status: 409, message: 'record already edited'});
+        }
+        if(findRecord.createdBy !== email){
+            return res.status(403).send({status: 403, message: 'You are not the owner'});
+        }
+        const holder = new Array(findRecord);
+        const data = holder.map(e => {
+            e.comment = comment;
+            return e;
+        });
+            return res.status(200).send({status: 200, message: 'Eddited successfully', data});
+    }
+
 }
 export default ReportController;
