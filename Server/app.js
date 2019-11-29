@@ -22,7 +22,7 @@ app.get('/'), (req,res) => {
 app.use('*', (req, res)=>{
     return res.status(404).json({
         status: 404,
-        error: 'the route does not found'
+        error: 'the route is not found'
     });
 });
 
