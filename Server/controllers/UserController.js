@@ -2,42 +2,44 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import userValidations from '../helpers/UserValidation';
-import users from '../models/usersModel';
+import queries from '../config/queries';
+import executeQuery from "../config/connectDB";
+import {users, userModel} from '../models/usersModel';
 
 dotenv.config();
 
 class UserController {
 
-    static signup(req, res) {
-        const { error } = userValidations.validateSignup(req.body);
-        if (error) {
-            return res.status(400).send({ status: 400, error: error.message });
-        }
-        const { firstName, lastName, userName, email, phoneNumber } = req.body;
-        const isUserExist = users.find(user => user.email === email);
-        if (isUserExist) {
-            return res.status(409).send({ status: 409, error: "This user already exists" });
-        }
-        const hashPassword = bcrypt.hashSync(req.body.password, 10);
-        const newUser = {
-            id: users.length + 1,
-            firstName,
-            lastName,
-            userName,
-            email,
-            password: hashPassword,
-            phoneNumber
-        };
-        users.push(newUser);
-        const token = jwt.sign({ id: newUser.id, email: newUser.email }, process.env.secretKey);
-        const { password, ...data } = newUser;
-        data.token = token;
-        return res.status(201).send({
-            status: 201, message: "User created successfully ",
-            data
-        });
-    }
+    static async signup(req, res) {
+        try {
+            const { error } = userValidations.validateSignup(req.body);
+            if (error) {
+                return res.status(400).send({ status: 400, error: error.message });
+            }
+            const isUserExist = await userModel.isUserExist(req.body);
+            if (isUserExist) {
+                return res.status(409).send({
+                    status: 409,
+                    message: "this email is already in use"
+                });
+            }
+            const created = await userModel.signUp(req);
+            const token = jwt.sign({
+                id: created[0].id,
+                email: created[0].email,
+                isadmin: created[0].isAdmin
+            }, process.env.secretKey);
 
+            res.status(201).send({
+                status: 201,
+                message: "User created successfully",
+                data: {token:token }
+            });
+        }
+        catch (err) {
+            return res.status(400).send({ status: 400, error: err.message });
+        }
+    }
     static signin(req, res) {
         const { error } = userValidations.validateSignin(req.body);
         if (error) {

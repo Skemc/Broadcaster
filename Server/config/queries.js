@@ -10,7 +10,6 @@ let queries = [
         editIncidentLocation: `UPDATE incident SET title=$1, location=$2 WHERE id=$3 RETURNING *`,
         deleteIncident: `DELETE FROM incident WHERE id=$1`,
         getIncident: `SELECT * FROM incident WHERE id=$1`,
-        findIncident: `SELECT * FROM incident WHERE id=$1`,
         getAllIncident: `SELECT * FROM incident`
     },
     {
