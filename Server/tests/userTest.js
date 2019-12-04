@@ -87,6 +87,8 @@ describe('Signin tests', () => {
   
   it("User should be able to signin when data are valid ", (done) => {
     chai.request(app).post("/api/v1/auth/signin").send(mock.signin).end((err, res) => {
+      // console.log(res);
+      
       res.should.have.status(200);  
       res.body.should.be.an("object");
       done();

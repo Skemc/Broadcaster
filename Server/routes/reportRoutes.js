@@ -1,6 +1,7 @@
 import express from 'express';
 import verifyUser from '../middleware/verifyUser';
 import ReportController from '../controllers/ReportController';
+import {reports, reportModel} from '../models/reportModel';
 
 const router = express.Router();
 

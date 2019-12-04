@@ -23,8 +23,8 @@ const createTable = async () => {
         title TEXT NOT NULL,
         type TEXT NOT NULL,
         comment TEXT NOT NULL,
-        location TEXT NOT NULL,
-        status TEXT NOT NULL,
+        locationLat TEXT NOT NULL,
+        locationLong TEXT NOT NULL,
         createdOn TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         createdBy TEXT NOT NULL
     )`;
@@ -32,10 +32,10 @@ const createTable = async () => {
      await pool.query(usersTables);
      await pool.query(incidentsTable);
 
-     const firstUser = `INSERT INTO users(firstname, lastname, username, email, password, phonenumber) VALUES('eric','karekezi', 'skemc', 'eric15@gmail.com', '$2b$10$hjXgNwYIzx8Hxeg.silh3usMzPF.TGMV3lMY55LACDhv19TnrtrMW','09876543456')`;
-     const firstIncident = `INSERT INTO incidents(title, type, comment, location, status, createdBy) VALUES('yyy', 'yyy','fniaf','afafaf','hkafa','eric15@gmail.com')`;
+    //  const firstUser = `INSERT INTO users(firstname, lastname, username, email, password, phonenumber) VALUES('eric','karekezi', 'skemc', 'eric15@gmail.com', ' $2b$10$hjXgNwYIzx8Hxeg.silh3usMzPF.TGMV3lMY55LACDhv19TnrtrMW','09876543456')`;
+    //  const firstIncident = `INSERT INTO incidents(title, type, comment, locationLat, locationLong, createdBy) VALUES('yyy', 'yyy','fniaf','afafaf','hkafa','eric15@gmail.com')`;
      
-     await pool.query(firstUser);
-     await pool.query(firstIncident);
+    //  await pool.query(firstUser);
+    //  await pool.query(firstIncident);
 };
 createTable();

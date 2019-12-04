@@ -1,3 +1,6 @@
+import queries from '../config/queries';
+import executeQuery from '../config/connectDB';
+
 const reports = [
     {
         id: 1,
@@ -22,4 +25,48 @@ const reports = [
         createdBy: 'eric6@gmail.com'
     }
 ];
-export default reports;
+
+class reportModel {
+    static async createArticle(req) {
+
+        const owner = req.user.email;
+
+        const newReport = [
+            req.body.title,
+            req.body.type,
+            req.body.comment,
+            req.body.locationLat,
+            req.body.locationLong,
+            new Date(),
+            owner
+        ];
+        
+
+        const createIncident = await executeQuery(queries[1].createIncident, newReport); 
+        return createIncident;
+    }
+
+    static async isUserExist(req){
+
+        let result = false;
+        const exists = await executeQuery(queries[0].isUserExist, [req.user.email]);
+        
+        if(exists.length > 0){
+            result = true;
+        }
+        return result;
+    }
+
+    static async isReportExist(req){
+        let result = false;
+        console.log(req.body.type);
+        
+        const exists = await executeQuery(queries[1].isIncidentExist, [req.body.title, req.body.type]);
+        
+        if(exists.length > 0){
+            result = true;            
+        }
+        return result;
+    }
+}
+export  {reports, reportModel};

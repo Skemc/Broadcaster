@@ -1,7 +1,6 @@
 import queries from '../config/queries';
 import executeQuery from '../config/connectDB';
 import bcrypt from 'bcrypt';
-import { exists } from 'fs';
 
 const users = [
     {
@@ -9,7 +8,7 @@ const users = [
         firstName : "eric",
         lastName : "skemc",
         userName : "skemc-eric",
-        email : "eric8@gmail.com",
+        email : "eric@gmail.com",
         password : "$2b$10$hjXgNwYIzx8Hxeg.silh3usMzPF.TGMV3lMY55LACDhv19TnrtrMW",
         phoneNumber : "0785824928",
         isAdmin: false
