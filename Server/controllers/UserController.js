@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import userValidations from '../helpers/UserValidation';
 import queries from '../config/queries';
 import executeQuery from "../config/connectDB";
-import {users, userModel} from '../models/usersModel';
+import { userModel} from '../models/usersModel';
 
 dotenv.config();
 
@@ -40,37 +40,45 @@ class UserController {
             return res.status(400).send({ status: 400, error: err.message });
         }
     }
-    static signin(req, res) {
-        const { error } = userValidations.validateSignin(req.body);
-        if (error) {
-            return res.status(400).send({ status: 400, error: error.message });
-        }
-        const isUserExist = users.find(user => user.email === req.body.email);
-        if (!isUserExist) {
-            return res.status(401).send({
-                status: 401,
-                message: "user dont exist"
+    static async signin(req, res) {
+        try {
+            const { error } = userValidations.validateSignin(req.body);
+            if (error) {
+                return res.status(400).send({ status: 400, error: error.message });
+            }
+            const { email, password } = req.body;
+            const isUserExist = await executeQuery(queries[0].isUserExist, [email]);
+            if (isUserExist.length === 0) {
+                return res.status(401).send({
+                    status: 401,
+                    message: "User is not signed up yet"
+                });
+            } else {
+                const isPassword = bcrypt.compareSync(password, isUserExist[0].password);
+                if (isPassword) {
+                    const token = jwt.sign({
+                        id: isUserExist[0].id,
+                        email: isUserExist[0].email,
+                        isadmin: isUserExist[0].isAdmin
+                    }, process.env.secretKey);
+                    res.status(200).send({
+                        status: 200,
+                        message: "User is successfully logged in",
+                        data: { token }
+                    });
+                }
+                else return res.status(401).send({
+                    status: 401,
+                    message: "Incorrect password"
+                });
+            }
 
-            });
+        } catch (error) {
+            return res.status(400).send({ status: 400, error: error.details[0].message });
+
         }
-        const isPassword = bcrypt.compareSync(req.body.password, isUserExist.password);
-        if (!isPassword) {
-            return res.status(401).send({
-                status: 401,
-                message: "Incorrect password"
-            });
-        }
-        const token = jwt.sign({
-            id: isUserExist.id,
-            email: isUserExist.email,
-            isadmin: isUserExist.isAdmin
-        }, process.env.secretKey);
-        return res.status(200).send({
-            status: 200,
-            message: 'User logged in successfully',
-            token
-        });
     }
+
 }
 
 
