@@ -10,7 +10,7 @@ const mock = {
     },
 
     signin: {
-        email: 'eric8@gmail.com',
+        email: 'eric15@gmail.com',
         password: 'Rwanda000'
     },
 
