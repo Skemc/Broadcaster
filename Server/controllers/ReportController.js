@@ -1,5 +1,5 @@
 import reports from '../models/reportModel';
-import users from '../models/usersModel';
+import { users } from '../models/usersModel';
 import reportValidation from '../helpers/reportValidation';
 
 class ReportController {

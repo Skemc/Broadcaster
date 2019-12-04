@@ -394,6 +394,14 @@ label {
     flex: 5;
 }
 
+.page-wrapper .main-content .content form .p{
+    font-size: 25px;
+    color: grey;
+    width: 80%;
+    background: transparent;
+    border: none;
+}
+
 .page-wrapper .main-content .content form p{
     font-size: 25px;
     color: grey;

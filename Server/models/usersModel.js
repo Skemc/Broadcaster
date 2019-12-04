@@ -1,3 +1,8 @@
+import queries from '../config/queries';
+import executeQuery from '../config/connectDB';
+import bcrypt from 'bcrypt';
+import { exists } from 'fs';
+
 const users = [
     {
         id: 1,
@@ -23,6 +28,39 @@ const users = [
 
 ]; 
 
-export default users;
+class userModel {
+    static async signUp(req) {
+        const {
+            firstName,
+            lastName,
+            userName,
+            email,
+            phoneNumber
+        } = req.body;
+        const password = bcrypt.hashSync(req.body.password, 10);
+            const newUser = [
+                firstName,
+                lastName,
+                userName,
+                email,
+                password,
+                phoneNumber
+            ];
+        const createdUser = await executeQuery(queries[0].createUser, newUser);
+        return createdUser;
+    }
+
+    static async isUserExist(body){
+        let result = false;
+        const exists = await executeQuery(queries[0].isUserExist, [body.email]);
+        if(exists.length === 1){
+            result = true;
+        }
+        return result;
+    }
+
+}
+
+export {users,userModel};
 
 
