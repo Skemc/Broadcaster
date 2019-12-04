@@ -11,7 +11,7 @@
     "build": "babel Server -d build",
     "start": "npm run build && node build/app.js",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "test": "npm run drop && npm run db && nyc --export=text mocha --require @babel/register Server/tests/*.js --exit",
+    "test": "npm run drop && npm run db && nyc --export=text mocha --require @babel/register --timeout 2000 Server/tests/*.js --exit",
     "lint": "eslint **/*.js  --ignore-pattern node_modules/",
     "drop": "babel-node Server/config/dropTable.js",
     "db": "babel-node Server/config/tables.js"

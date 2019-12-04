@@ -10,8 +10,8 @@ const mock = {
     },
 
     signin: {
-        email: 'eric15@gmail.com',
-        password: 'Rwanda000'
+        email: 'eric@gmail.com',
+        password: 'Rwanda123'
     },
 
     invalidSigninEmail: {
@@ -27,7 +27,7 @@ const mock = {
     report: {
         title: 'hhhh',
         type: 'red-flag',
-        comment: 'jgdhjhf',
+        comment: 'jgdhjhfhhh',
         locationLat: '400',
         locationLong: '500'
     },
@@ -41,7 +41,7 @@ const mock = {
     },
     
     rightToken: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJlcmljNkBnbWFpbC5jb20iLCJpYXQiOjE1NzQ3NzQ5MjN9.u_2_Ilq-wmFFslfQkOtbDuVFbA76eZ9eVwF0b-Ivp2c'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlcmljQGdtYWlsLmNvbSIsImlhdCI6MTU3NTQ3Nzc1NH0.G45MxUpTTtg1RITXq0-VUlPnYYeiLkZh5HlOlw06fDU'
     },
 
     wrongToken: {

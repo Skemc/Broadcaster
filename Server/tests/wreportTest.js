@@ -8,15 +8,7 @@ chai.should();
 
 describe('reports tests', () => {
 
-    it("User should be able to create red-flag when data are valid ", (done) => {
-        chai.request(app).post("/api/v1/red-flags")
-            .set('auth', mock.rightToken.token)
-            .send(mock.report).end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.an("object");
-                done();
-            });
-    });
+
 
     it("User should not be able to create red-flag when token is invalid ", (done) => {
         chai.request(app).post("/api/v1/red-flags")
@@ -29,16 +21,16 @@ describe('reports tests', () => {
             });
     });
 
-    it("User should not be able to create red-flag when user not exist", (done) => {
+
+    it("User should be able to create red-flag when data are valid ", (done) => {
         chai.request(app).post("/api/v1/red-flags")
-            .set('auth', mock.invalidToken.token)
+            .set('auth', mock.rightToken.token)
             .send(mock.report).end((err, res) => {
-                res.should.have.status(401);
+                res.should.have.status(201);
                 res.body.should.be.an("object");
                 done();
             });
     });
-
     it("User should not be able to create red-flag when already created", (done) => {
         chai.request(app).post("/api/v1/red-flags")
             .set('auth', mock.rightToken.token)
@@ -58,7 +50,15 @@ describe('reports tests', () => {
                 done();
             });
     });
-
+    it("User should not be able to create red-flag when user not exist", (done) => {
+        chai.request(app).post("/api/v1/red-flags")
+            .set('auth', mock.invalidToken.token)
+            .send(mock.report).end((err, res) => {
+                res.should.have.status(401);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
     it("User should not be able to create red-flag with no title ", (done) => {
         const { title, ...data } = mock.report;
         chai.request(app).post("/api/v1/red-flags")
@@ -102,6 +102,8 @@ describe('reports tests', () => {
                 done();
             });
     });
+
+
 
     it("User should be able to view all red-flags created", (done) => {
         chai.request(app).get(`/api/v1/red-flags`)
@@ -153,38 +155,10 @@ describe('reports tests', () => {
             });
     });
 
-    it("User should not be able to delete red-flag when not found", (done) => {
-        chai.request(app).delete(`/api/v1/red-flags/${100}`)
-            .set('auth', mock.rightToken.token)
-            .end((err, res) => {
-                res.should.have.status(404);
-                res.body.should.be.an("object");
-                done();
-            });
-    });
-
-    it("User should be able to delete red-flag", (done) => {
-        chai.request(app).delete(`/api/v1/red-flags/${1}`)
-            .set('auth', mock.rightToken.token)
-            .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.an("object");
-                done();
-            });
-    });
-
-    it("User should not be able to delete red-flag when not owner", (done) => {
-        chai.request(app).delete(`/api/v1/red-flags/${1}`)
-            .set('auth', mock.invalidToken.token)
-            .end((err, res) => {
-                res.should.have.status(403);
-                res.body.should.be.an("object");
-                done();
-            });
-    });
+    
 
     it("User should be able to edit red-flag location", (done) => {
-        chai.request(app).patch(`/api/v1/red-flags/location/${2}`)
+        chai.request(app).patch(`/api/v1/red-flags/location/${1}`)
             .set('auth', mock.rightToken.token)
             .send(mock.editLocation).end((err, res) => {
                 res.should.have.status(200);
@@ -204,7 +178,7 @@ describe('reports tests', () => {
     });
 
     it("User should not be able to edit red-flag location when already edited", (done) => {
-        chai.request(app).patch(`/api/v1/red-flags/location/${2}`)
+        chai.request(app).patch(`/api/v1/red-flags/location/${1}`)
             .set('auth', mock.rightToken.token)
             .send(mock.editLocation).end((err, res) => {
                 res.should.have.status(409);
@@ -233,7 +207,7 @@ describe('reports tests', () => {
         });
 });
     it("User should be able to edit red-flag comment", (done) => {
-        chai.request(app).patch(`/api/v1/red-flags/comment/${2}`)
+        chai.request(app).patch(`/api/v1/red-flags/comment/${1}`)
             .set('auth', mock.rightToken.token)
             .send(mock.editComment).end((err, res) => {
                 res.should.have.status(200);
@@ -264,5 +238,35 @@ describe('reports tests', () => {
                 done();
             });
     });
+    it("User should not be able to delete red-flag when not found", (done) => {
+        chai.request(app).delete(`/api/v1/red-flags/${100}`)
+            .set('auth', mock.rightToken.token)
+            .end((err, res) => {
+                res.should.have.status(404);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should be able to delete red-flag", (done) => {
+        chai.request(app).delete(`/api/v1/red-flags/${1}`)
+            .set('auth', mock.rightToken.token)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
+
+    it("User should not be able to delete red-flag when not owner", (done) => {
+        chai.request(app).delete(`/api/v1/red-flags/${1}`)
+            .set('auth', mock.invalidToken.token)
+            .end((err, res) => {
+                res.should.have.status(403);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
 
 });
+
