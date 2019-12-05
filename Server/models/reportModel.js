@@ -73,5 +73,12 @@ class reportModel {
         const getAll = await executeQuery(queries[1].getAllIncident);
         return getAll;
     }
+    
+    static async getSpecific(req){
+        const getSpecific = await executeQuery(queries[1].getIncident, [req.params.id]);
+        return getSpecific;
+    }
+
+
 }
 export  {reports, reportModel};

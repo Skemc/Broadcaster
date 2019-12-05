@@ -51,21 +51,26 @@ class ReportController {
         }
     }
 
-    static getOneRedFlagRecords(req,res){
-    
-        const { id } = req.params;
-        const { email } = req.user;
-        const isUserExist = users.find(u=>u.email===email);
-        const findRecord = reports.find(c=>c.id==id);
-    
-        if(!isUserExist){
-            return res.status(401).send({status: 401, message: 'User not exist'});
-        }
-        if(!findRecord){
-            return res.status(404).send({status: 404, message: 'Record not found'});
+    static async getOneRedFlagRecords(req, res) {
+        try {
+            // const { id } = req.params;
+            // const { email } = req.user;
+            // const isUserExist = await executeQuery(queries[0].isUserExist, [email]);
+            // const getSpecific = await executeQuery(queries[1].getIncident, [id]);
+            const isUserExist = await reportModel.isUserExist(req);
+            const getSpecific = await reportModel.getSpecific(req);
+            if (isUserExist !== true) {
+                return res.status(401).send({ status: 401, message: 'User not exist' });
+            }
+            if (!getSpecific[0]) {
+                return res.status(404).send({ status: 404, message: 'Record not found' });
 
+            }
+            return res.status(200).send({ status: 200, message: 'Data fetched', data: getSpecific });
         }
-        return res.status(200).send({status: 200, message: 'Data fetched', data: findRecord});
+        catch (error) {
+            return res.status(400).send({ status: 400, error: error.message });
+        }
     }
 
     static deleteRedFlagRecords(req,res){
