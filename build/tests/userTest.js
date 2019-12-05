@@ -105,6 +105,7 @@ describe("Signup tests", function () {
 describe('Signin tests', function () {
   it("User should be able to signin when data are valid ", function (done) {
     _chai["default"].request(_app["default"]).post("/api/v1/auth/signin").send(_mockdata["default"].signin).end(function (err, res) {
+      // console.log(res);
       res.should.have.status(200);
       res.body.should.be.an("object");
       done();
