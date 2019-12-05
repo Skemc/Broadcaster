@@ -2,7 +2,7 @@
   "name": "broadcaster",
   "version": "1.0.0",
   "engines": {
-    "node": "6.11.1"
+    "node": "12.13.0"
   },
   "description": "Corruption is a huge bane to Africa’s development. African countries must develop novel and\r localized solutions that will curb this menace, hence the birth of Broadcaster. Broadcaster\r enables any/every citizen to bring any form of corruption to the notice of appropriate authorities\r and the general public. Users can also report on things that need government intervention.",
   "main": "app.js",
@@ -14,7 +14,8 @@
     "test": "npm run drop && npm run db && nyc --export=text mocha --require @babel/register --timeout 2000 Server/tests/*.js --exit",
     "lint": "eslint **/*.js  --ignore-pattern node_modules/",
     "drop": "babel-node Server/config/dropTable.js",
-    "db": "babel-node Server/config/tables.js"
+    "db": "babel-node Server/config/tables.js",
+    "startheroku": "npm run db && babel-node Server/app.js"
 
   },
   "repository": {
@@ -38,7 +39,6 @@
     "@babel/register": "^7.7.0",
     "@babel/runtime": "^7.7.2",
     "@hapi/joi": "^16.1.7",
-    "babel": "^6.23.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
@@ -47,7 +47,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "nyc": "^14.1.1",
-    "pg": "^7.14.0"
+    "pg": "^7.14.0",
+    "nodemon": "^1.19.4"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
@@ -56,7 +57,6 @@
     "eslint": "^6.7.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "mocha": "^6.2.2",
-    "nodemon": "^1.19.4"
+    "mocha": "^6.2.2"
   }
 }

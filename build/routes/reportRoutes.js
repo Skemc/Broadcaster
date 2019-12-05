@@ -13,6 +13,8 @@ var _verifyUser = _interopRequireDefault(require("../middleware/verifyUser"));
 
 var _ReportController = _interopRequireDefault(require("../controllers/ReportController"));
 
+var _reportModel = require("../models/reportModel");
+
 var router = _express["default"].Router();
 
 router.post('/red-flags', _verifyUser["default"], _ReportController["default"].createRedFlag);

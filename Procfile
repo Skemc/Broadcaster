@@ -1,1 +1,2 @@
-web: nodemon --exec babel-node Server/app.js
+web:npm run db && babel-node Server/app.js
+

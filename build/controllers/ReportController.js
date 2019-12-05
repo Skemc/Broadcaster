@@ -7,17 +7,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _reportModel = _interopRequireDefault(require("../models/reportModel"));
+var _reportModel = require("../models/reportModel");
 
-var _usersModel = _interopRequireDefault(require("../models/usersModel"));
+var _usersModel = require("../models/usersModel");
 
 var _reportValidation = _interopRequireDefault(require("../helpers/reportValidation"));
+
+var _queries = _interopRequireDefault(require("../config/queries"));
+
+var _connectDB = _interopRequireDefault(require("../config/connectDB"));
 
 var ReportController =
 /*#__PURE__*/
@@ -29,172 +33,280 @@ function () {
   (0, _createClass2["default"])(ReportController, null, [{
     key: "createRedFlag",
     value: function createRedFlag(req, res) {
-      var _reportValidation$val = _reportValidation["default"].validateReport(req.body),
-          error = _reportValidation$val.error;
+      var _reportValidation$val, error, isUserExist, isReportExist, createIncident;
 
-      if (error) {
-        return res.status(400).send({
-          status: 400,
-          error: error.message
-        });
-      }
+      return _regenerator["default"].async(function createRedFlag$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _reportValidation$val = _reportValidation["default"].validateReport(req.body), error = _reportValidation$val.error;
+              _context.prev = 1;
 
-      var owner = req.user.email;
-      var _req$body = req.body,
-          title = _req$body.title,
-          type = _req$body.type,
-          comment = _req$body.comment,
-          locationLat = _req$body.locationLat,
-          locationLong = _req$body.locationLong;
+              if (!error) {
+                _context.next = 4;
+                break;
+              }
 
-      var isReportExist = _reportModel["default"].find(function (c) {
-        return c.title == title && c.type == type;
-      });
+              return _context.abrupt("return", res.status(400).send({
+                status: 400,
+                error: error.message
+              }));
 
-      var isUserExist = _usersModel["default"].find(function (s) {
-        return s.email == owner;
-      });
+            case 4:
+              _context.next = 6;
+              return _regenerator["default"].awrap(_reportModel.reportModel.isUserExist(req));
 
-      if (!isUserExist) {
-        return res.status(401).send({
-          status: 401,
-          message: 'User does not exist!'
-        });
-      }
+            case 6:
+              isUserExist = _context.sent;
+              _context.next = 9;
+              return _regenerator["default"].awrap(_reportModel.reportModel.isReportExist(req));
 
-      if (isReportExist) {
-        return res.status(409).send({
-          status: 409,
-          message: 'Already reported!'
-        });
-      }
+            case 9:
+              isReportExist = _context.sent;
 
-      var newReport = {
-        id: _reportModel["default"].length + 1,
-        title: title,
-        type: type,
-        comment: comment,
-        locationLat: locationLat,
-        locationLong: locationLong,
-        status: 'Draft',
-        createdOn: new Date(),
-        createdBy: owner
-      };
+              if (!(isUserExist !== true)) {
+                _context.next = 12;
+                break;
+              }
 
-      _reportModel["default"].push(newReport);
+              return _context.abrupt("return", res.status(401).send({
+                status: 401,
+                message: 'user not exist!'
+              }));
 
-      var data = (0, _extends2["default"])({}, newReport);
-      return res.status(200).send({
-        status: 200,
-        message: 'Reported successfully',
-        data: data
-      });
+            case 12:
+              if (!(isReportExist === true)) {
+                _context.next = 14;
+                break;
+              }
+
+              return _context.abrupt("return", res.status(409).send({
+                status: 409,
+                message: 'Already reported!'
+              }));
+
+            case 14:
+              _context.next = 16;
+              return _regenerator["default"].awrap(_reportModel.reportModel.createArticle(req));
+
+            case 16:
+              createIncident = _context.sent;
+              return _context.abrupt("return", res.status(201).send({
+                status: 201,
+                message: "Report created successfully",
+                data: createIncident[0]
+              }));
+
+            case 20:
+              _context.prev = 20;
+              _context.t0 = _context["catch"](1);
+              return _context.abrupt("return", res.status(400).send({
+                status: 400,
+                error: _context.t0.message
+              }));
+
+            case 23:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, null, [[1, 20]]);
     }
   }, {
     key: "getAllRedFlagRecords",
     value: function getAllRedFlagRecords(req, res) {
-      var email = req.user.email;
+      var isUserExist, getAll;
+      return _regenerator["default"].async(function getAllRedFlagRecords$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return _regenerator["default"].awrap(_reportModel.reportModel.isUserExist(req));
 
-      var isUserExist = _usersModel["default"].find(function (u) {
-        return u.email === email;
-      });
+            case 3:
+              isUserExist = _context2.sent;
 
-      if (!isUserExist) {
-        return res.status(401).send({
-          status: 401,
-          message: 'User not exist'
-        });
-      }
+              if (!(isUserExist !== true)) {
+                _context2.next = 6;
+                break;
+              }
 
-      return res.status(200).send({
-        status: 200,
-        message: 'Data fetched',
-        data: _reportModel["default"]
-      });
+              return _context2.abrupt("return", res.status(401).send({
+                status: 401,
+                message: 'User not exist'
+              }));
+
+            case 6:
+              _context2.next = 8;
+              return _regenerator["default"].awrap(_reportModel.reportModel.getAll(req));
+
+            case 8:
+              getAll = _context2.sent;
+              return _context2.abrupt("return", res.status(200).send({
+                status: 200,
+                message: 'Data fetched',
+                data: getAll
+              }));
+
+            case 12:
+              _context2.prev = 12;
+              _context2.t0 = _context2["catch"](0);
+              return _context2.abrupt("return", res.status(400).send({
+                status: 400,
+                error: _context2.t0.message
+              }));
+
+            case 15:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, null, [[0, 12]]);
     }
   }, {
     key: "getOneRedFlagRecords",
     value: function getOneRedFlagRecords(req, res) {
-      var id = req.params.id;
-      var email = req.user.email;
+      var isUserExist, getSpecific;
+      return _regenerator["default"].async(function getOneRedFlagRecords$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return _regenerator["default"].awrap(_reportModel.reportModel.isUserExist(req));
 
-      var isUserExist = _usersModel["default"].find(function (u) {
-        return u.email === email;
-      });
+            case 3:
+              isUserExist = _context3.sent;
+              _context3.next = 6;
+              return _regenerator["default"].awrap(_reportModel.reportModel.getSpecific(req));
 
-      var findRecord = _reportModel["default"].find(function (c) {
-        return c.id == id;
-      });
+            case 6:
+              getSpecific = _context3.sent;
 
-      if (!isUserExist) {
-        return res.status(401).send({
-          status: 401,
-          message: 'User not exist'
-        });
-      }
+              if (!(isUserExist !== true)) {
+                _context3.next = 9;
+                break;
+              }
 
-      if (!findRecord) {
-        return res.status(404).send({
-          status: 404,
-          message: 'Record not found'
-        });
-      }
+              return _context3.abrupt("return", res.status(401).send({
+                status: 401,
+                message: 'User not exist'
+              }));
 
-      return res.status(200).send({
-        status: 200,
-        message: 'Data fetched',
-        data: findRecord
-      });
+            case 9:
+              if (getSpecific[0]) {
+                _context3.next = 11;
+                break;
+              }
+
+              return _context3.abrupt("return", res.status(404).send({
+                status: 404,
+                message: 'Record not found'
+              }));
+
+            case 11:
+              return _context3.abrupt("return", res.status(200).send({
+                status: 200,
+                message: 'Data fetched',
+                data: getSpecific
+              }));
+
+            case 14:
+              _context3.prev = 14;
+              _context3.t0 = _context3["catch"](0);
+              return _context3.abrupt("return", res.status(400).send({
+                status: 400,
+                error: _context3.t0.message
+              }));
+
+            case 17:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, null, null, [[0, 14]]);
     }
   }, {
     key: "deleteRedFlagRecords",
     value: function deleteRedFlagRecords(req, res) {
-      var id = req.params.id;
-      var email = req.user.email;
+      var isUserExist, getSpecific;
+      return _regenerator["default"].async(function deleteRedFlagRecords$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return _regenerator["default"].awrap(_reportModel.reportModel.isUserExist(req));
 
-      var findRecord = _reportModel["default"].find(function (c) {
-        return c.id == id;
-      });
+            case 3:
+              isUserExist = _context4.sent;
+              _context4.next = 6;
+              return _regenerator["default"].awrap(_reportModel.reportModel.getSpecific(req));
 
-      var isOwner = _reportModel["default"].find(function (s) {
-        return s.createdBy == email;
-      });
+            case 6:
+              getSpecific = _context4.sent;
 
-      if (!isOwner) {
-        return res.status(403).send({
-          status: 403,
-          message: 'you are not the owner'
-        });
-      }
+              if (!(isUserExist !== true)) {
+                _context4.next = 9;
+                break;
+              }
 
-      if (!findRecord) {
-        return res.status(404).send({
-          status: 404,
-          message: 'Record not found'
-        });
-      }
+              return _context4.abrupt("return", res.status(403).send({
+                status: 403,
+                message: 'you are not the owner'
+              }));
 
-      _reportModel["default"].splice(_reportModel["default"].indexOf(findRecord, 1));
+            case 9:
+              if (getSpecific[0]) {
+                _context4.next = 11;
+                break;
+              }
 
-      return res.status(200).send({
-        status: 200,
-        message: 'Deleted successfully'
-      });
+              return _context4.abrupt("return", res.status(404).send({
+                status: 404,
+                message: 'Record not found'
+              }));
+
+            case 11:
+              _context4.next = 13;
+              return _regenerator["default"].awrap(_reportModel.reportModel.deleteIncident(req));
+
+            case 13:
+              return _context4.abrupt("return", res.status(200).send({
+                status: 200,
+                message: "Deleted successfully"
+              }));
+
+            case 16:
+              _context4.prev = 16;
+              _context4.t0 = _context4["catch"](0);
+              return _context4.abrupt("return", res.status(400).send({
+                status: 400,
+                error: _context4.t0.message
+              }));
+
+            case 19:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, null, null, [[0, 16]]);
     }
   }, {
     key: "editRedFlagLocationRecords",
     value: function editRedFlagLocationRecords(req, res) {
-      var _req$body2 = req.body,
-          locationLat = _req$body2.locationLat,
-          locationLong = _req$body2.locationLong;
+      var _req$body = req.body,
+          locationLat = _req$body.locationLat,
+          locationLong = _req$body.locationLong;
       var id = req.params.id;
       var email = req.user.email;
 
-      var findRecord = _reportModel["default"].find(function (c) {
+      var findRecord = _reportModel.reports.find(function (c) {
         return c.id == id;
       });
 
-      var isEdited = _reportModel["default"].find(function (e) {
+      var isEdited = _reportModel.reports.find(function (e) {
         return e.locationLat == locationLat && e.locationLong == locationLong && e.createdBy == email;
       });
 
@@ -238,11 +350,11 @@ function () {
       var id = req.params.id;
       var email = req.user.email;
 
-      var findRecord = _reportModel["default"].find(function (c) {
+      var findRecord = _reportModel.reports.find(function (c) {
         return c.id == id;
       });
 
-      var isEdited = _reportModel["default"].find(function (e) {
+      var isEdited = _reportModel.reports.find(function (e) {
         return e.comment == comment;
       });
 
