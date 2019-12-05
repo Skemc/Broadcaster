@@ -78,6 +78,10 @@ class reportModel {
         const getSpecific = await executeQuery(queries[1].getIncident, [req.params.id]);
         return getSpecific;
     }
+    
+    static async deleteIncident(req){
+         await executeQuery(queries[1].deleteIncident, [req.params.id]);
+    }
 
 
 }
