@@ -1,1 +1,1 @@
-web: babel-node Server/app.js
+web: npm run start:heroku
