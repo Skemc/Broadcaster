@@ -1,6 +1,8 @@
 import {reports, reportModel} from '../models/reportModel';
 import { users } from '../models/usersModel';
 import reportValidation from '../helpers/reportValidation';
+import queries from '../config/queries';
+import executeQuery from '../config/connectDB';
 
 class ReportController {
     static async createRedFlag(req, res) {
@@ -35,15 +37,18 @@ class ReportController {
         }
     }
 
-    static getAllRedFlagRecords(req,res){
-
-        var { email } = req.user;
-        const isUserExist = users.find(u=>u.email===email);
-    
-        if(!isUserExist){
-            return res.status(401).send({status: 401, message: 'User not exist'});
+    static async getAllRedFlagRecords(req, res) {
+        try {
+            const isUserExist = await reportModel.isUserExist(req);
+            if (isUserExist !==  true) {
+                return res.status(401).send({ status: 401, message: 'User not exist' });
+            }
+            const getAll = await reportModel.getAll(req);
+            return res.status(200).send({ status: 200, message: 'Data fetched', data: getAll });
         }
-        return res.status(200).send({status: 200, message: 'Data fetched', data: reports});
+        catch (error) {
+            return res.status(400).send({ status: 400, error: error.message });
+        }
     }
 
     static getOneRedFlagRecords(req,res){

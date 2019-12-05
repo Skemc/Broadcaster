@@ -68,5 +68,10 @@ class reportModel {
         }
         return result;
     }
+
+    static async getAll(req){
+        const getAll = await executeQuery(queries[1].getAllIncident);
+        return getAll;
+    }
 }
 export  {reports, reportModel};
