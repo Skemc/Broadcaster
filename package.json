@@ -15,7 +15,7 @@
     "lint": "eslint **/*.js  --ignore-pattern node_modules/",
     "drop": "babel-node Server/config/dropTable.js",
     "db": "babel-node Server/config/tables.js",
-    "start:heroku": "babel Server/app.js"
+    "start:heroku": "npm run drop && npm run db && babel Server/app.js"
 
   },
   "repository": {
