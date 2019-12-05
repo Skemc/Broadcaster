@@ -103,7 +103,15 @@ describe('reports tests', () => {
             });
     });
 
-
+    it("User should not be able to view all red-flag created when user not registered", (done) => {
+        chai.request(app).get(`/api/v1/red-flags`)
+            .set('auth', mock.invalidToken.token)
+            .end((err, res) => {
+                res.should.have.status(401);
+                res.body.should.be.an("object");
+                done();
+            });
+    });
 
     it("User should be able to view all red-flags created", (done) => {
         chai.request(app).get(`/api/v1/red-flags`)
@@ -115,15 +123,7 @@ describe('reports tests', () => {
             });
     });
 
-    it("User should not be able to view all red-flag created when user not registered", (done) => {
-        chai.request(app).get(`/api/v1/red-flags`)
-            .set('auth', mock.invalidToken.token)
-            .end((err, res) => {
-                res.should.have.status(401);
-                res.body.should.be.an("object");
-                done();
-            });
-    });
+
 
     it("User should not be able to view single red-flag created when user not registered", (done) => {
         chai.request(app).get(`/api/v1/red-flags/${1}`)
