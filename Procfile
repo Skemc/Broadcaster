@@ -1,1 +1,1 @@
-web: nodemon --exec babel-node Server/app.js
+web: npm run start:heroku

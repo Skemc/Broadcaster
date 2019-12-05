@@ -14,7 +14,8 @@
     "test": "npm run drop && npm run db && nyc --export=text mocha --require @babel/register --timeout 2000 Server/tests/*.js --exit",
     "lint": "eslint **/*.js  --ignore-pattern node_modules/",
     "drop": "babel-node Server/config/dropTable.js",
-    "db": "babel-node Server/config/tables.js"
+    "db": "babel-node Server/config/tables.js",
+    "start:heroku": "babel-node Server/app.js"
 
   },
   "repository": {
