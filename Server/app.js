@@ -8,18 +8,18 @@ const app = express();
 dotenv.config();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/v1', myRoutes);
 
-app.get('/'), (req,res) => {
+app.get('/', (req, res) => {
     res.status(200).json({
-      status:200,
-      message: 'Welcome to Broadcaster'
+        status: 200,
+        message: 'Welcome to Broadcaster'
+    });
 });
-};
 
-app.use('*', (req, res)=>{
+app.use('*', (req, res) => {
     return res.status(404).json({
         status: 404,
         error: 'the route is not found'
@@ -28,7 +28,7 @@ app.use('*', (req, res)=>{
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`connected on ${port}`);
 });
 
