@@ -53,10 +53,6 @@ class ReportController {
 
     static async getOneRedFlagRecords(req, res) {
         try {
-            // const { id } = req.params;
-            // const { email } = req.user;
-            // const isUserExist = await executeQuery(queries[0].isUserExist, [email]);
-            // const getSpecific = await executeQuery(queries[1].getIncident, [id]);
             const isUserExist = await reportModel.isUserExist(req);
             const getSpecific = await reportModel.getSpecific(req);
             if (isUserExist !== true) {
@@ -73,21 +69,30 @@ class ReportController {
         }
     }
 
-    static deleteRedFlagRecords(req,res){
-    
-        const { id } = req.params;
-        const { email } = req.user;
-        const findRecord = reports.find(c => c.id == id);
-        const isOwner = reports.find(s => s.createdBy == email);
+    static async deleteRedFlagRecords(req, res) {
+        try {
+            // const { id } = req.params;
+            // const { email } = req.user;
+            // const getSpecific = await executeQuery(query[1].getIncident, [id]);
+            // const isOwner = await executeQuery(query[0].isUserExist, [email]);
+            const isUserExist = await reportModel.isUserExist(req);
+            const getSpecific = await reportModel.getSpecific(req);
 
-        if(!isOwner){
-            return res.status(403).send({status: 403, message: 'you are not the owner'});
+            if (isUserExist !== true) {
+                return res.status(403).send({ status: 403, message: 'you are not the owner' });
+            }
+            if (!getSpecific[0]) {
+                return res.status(404).send({ status: 404, message: 'Record not found' });
+            }
+            await reportModel.deleteIncident(req);
+            return res.status(200).send({
+                status: 200,
+                message: "Deleted successfully"
+            });
         }
-        if(!findRecord){
-            return res.status(404).send({status: 404, message: 'Record not found'});
+        catch (error) {
+            return res.status(400).send({ status: 400, error: error.message });
         }
-        reports.splice(reports.indexOf(findRecord, 1));
-        return res.status(200).send({status: 200, message: 'Deleted successfully'});
     }
 
     static editRedFlagLocationRecords(req,res){
