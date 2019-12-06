@@ -18,8 +18,6 @@ describe('App Tests', () => {
     it('Welcome message', (done) =>{
         chai.request(app).get('/')
         .send().end((err, res) => {
-            console.log(res);
-            
             res.should.have.status(200);
             res.body.should.be.an("object");
             done();

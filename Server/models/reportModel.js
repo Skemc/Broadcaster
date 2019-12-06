@@ -50,7 +50,6 @@ class reportModel {
 
         let result = false;
         const exists = await executeQuery(queries[0].isUserExist, [req.user.email]);
-        
         if(exists.length > 0){
             result = true;
         }
@@ -59,11 +58,17 @@ class reportModel {
 
     static async isReportExist(req){
         let result = false;
-        console.log(req.body.type);
-        
         const exists = await executeQuery(queries[1].isIncidentExist, [req.body.title, req.body.type]);
-        
         if(exists.length > 0){
+            result = true;            
+        }
+        return result;
+    }
+    
+    static async isEdited(req){
+        let result = false;
+        const edited = await executeQuery(queries[1].isEdited, [req.body.locationLat, req.body.locationLong]);
+        if(edited[0]){
             result = true;            
         }
         return result;
@@ -76,11 +81,16 @@ class reportModel {
     
     static async getSpecific(req){
         const getSpecific = await executeQuery(queries[1].getIncident, [req.params.id]);
-        return getSpecific;
+        return getSpecific.rows || getSpecific;
     }
     
     static async deleteIncident(req){
          await executeQuery(queries[1].deleteIncident, [req.params.id]);
+    }
+    
+    static async editIncident(req){
+        const editIncident = await executeQuery(queries[1].editIncidentLocation, [req.body.locationLat, req.body.locationLong, parseInt(req.params.id,10), req.user.email ]);
+        return editIncident;
     }
 
 

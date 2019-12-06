@@ -39,6 +39,10 @@ const mock = {
         locationLat: '08923',
         locationLong: '0894'
     },
+    editLocation2: {
+        locationLat: '0896623',
+        locationLong: '089554'
+    },
     
     rightToken: {
         token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlcmljQGdtYWlsLmNvbSIsImlhdCI6MTU3NTQ3Nzc1NH0.G45MxUpTTtg1RITXq0-VUlPnYYeiLkZh5HlOlw06fDU'

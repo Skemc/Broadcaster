@@ -15,7 +15,8 @@ const createTable = async () => {
         username TEXT NOT NULL,
         email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL,
-        phonenumber TEXT NOT NULL
+        phonenumber TEXT NOT NULL,
+        isadmin TEXT DEFAULT false NOT NULL
   
     )`;
     const incidentsTable = `CREATE TABLE IF NOT EXISTS incidents (
@@ -32,10 +33,10 @@ const createTable = async () => {
      await pool.query(usersTables);
      await pool.query(incidentsTable);
 
-    //  const firstUser = `INSERT INTO users(firstname, lastname, username, email, password, phonenumber) VALUES('eric','karekezi', 'skemc', 'eric15@gmail.com', ' $2b$10$hjXgNwYIzx8Hxeg.silh3usMzPF.TGMV3lMY55LACDhv19TnrtrMW','09876543456')`;
-    //  const firstIncident = `INSERT INTO incidents(title, type, comment, locationLat, locationLong, createdBy) VALUES('yyy', 'yyy','fniaf','afafaf','hkafa','eric15@gmail.com')`;
+    //  const firstUser = `INSERT INTO users(firstname, lastname, username, email, password, phonenumber) VALUES('eric','karekezi', 'skemc', 'eric@gmail.com', ' $2b$10$hjXgNwYIzx8Hxeg.silh3usMzPF.TGMV3lMY55LACDhv19TnrtrMW','09876543456')`;
+     const firstIncident = `INSERT INTO incidents(title, type, comment, locationLat, locationLong, createdBy) VALUES('crime', 'intervention','killed an officer','2000','400', 'eric@gmail.com')`;
      
     //  await pool.query(firstUser);
-    //  await pool.query(firstIncident);
+     await pool.query(firstIncident);
 };
 createTable();
