@@ -2,7 +2,6 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/Skemc/Broadcaster/badge.svg?branch=develop)](https://coveralls.io/github/Skemc/Broadcaster?branch=develop)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/3d80ed9e7e3ae7ef601a/maintainability)](https://codeclimate.com/github/Skemc/Broadcaster/maintainability)
 
 # Broadcaster
 Corruption is a huge bane to Africa’s development. African countries must develop novel and
