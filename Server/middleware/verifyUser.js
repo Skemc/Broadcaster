@@ -24,6 +24,7 @@ else{jwt.verify(req.headers.auth, process.env.secretKey, (err, result) => {
     
 
   } catch (err) {
+    /* istanbul ignore next*/ 
     res.status(500).json({
       status: 500,
       error: err.message

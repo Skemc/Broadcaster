@@ -120,42 +120,33 @@ class ReportController {
 
     }
 
-    // static async editRedFlagCommentRecords(req, res) {
-    //     try {
-    //         const { comment } = req.body;
-    //         const { id } = parseInt(req.params.id);
-    //         const { email } = req.user;
-    //         const getSpecific = await executeQuery(queries[1].getIncident, [id]);
-    //         const isEdited = await executeQuery(queries[1].isIncidentExist, [req.body.comment]);
-
-
-    //         if (!getSpecific.length === 0) {
-    //             return res.status(404).send({ status: 404, message: 'record not found' });
-    //         }
-    //         if (isEdited.length !== 0) {
-    //             return res.status(409).send({ status: 409, message: 'record already edited' });
-    //         }
-    //         if (getSpecific[0].createdBy !== email) {
-    //             return res.status(403).send({ status: 403, message: 'You are not the owner' });
-    //         }
-    //         const editIncident = await executeQuery(queries[1].editIncidentComment, [comment, id]);
-    //         // console.log('as',editIncidentComment);
-    //         // console.log(editIncident);
-    //         // if(editIncident.rowCount === 1){
-    //         // }
-    //             return res.status(200).send({
-    //                 status: 200,
-    //                 message: "Edited successfully",
-    //                 data: {
-    //                     comment: editIncident[0].comment,
-    //                     id: editIncident[0].id
-    //                 }
-    //             });
+    static async editRedFlagCommentRecords(req, res) {
+        try {
+            const getSpecific = await reportModel.getSpecific(req);
+            const isEditedComment = await reportModel.isEditedComment(req);
+            if (!getSpecific[0]) {
+                return res.status(404).send({ status: 404, message: 'record not found' });
+            }
+            if (isEditedComment) {
+                return res.status(409).send({ status: 409, message: 'record already edited' });
+            }
+            if (getSpecific[0].createdby !== req.user.email) {
+                return res.status(403).send({ status: 403, message: 'You are not the owner' });
+            }
+            const editIncident = await reportModel.editCommentIncident(req);
+                return res.status(200).send({
+                    status: 200,
+                    message: "Edited successfully",
+                    data: {
+                        id: editIncident[0].id,
+                        comment: editIncident[0].comment
+                    }
+                });
             
-    //     }
-    //     catch (error) {
-    //         return res.status(400).send({ status: 400, error: error.message });
-    //     }
-    // }
+        }
+        catch (error) {
+            return res.status(400).send({ status: 400, error: error.message });
+        }
+    }
 }
 export default ReportController;
