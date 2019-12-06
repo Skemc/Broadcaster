@@ -17,7 +17,6 @@ body{
     top: 0;
     justify-content: center;
     align-items: center;
-    /* z-index: ; */
  }
 
 .signup-box{
@@ -103,7 +102,7 @@ p{
 p a{
     color: black;
     font-weight: 900;
-    text-decoration: none;
+    text-decoration: underline;
 }
 p a:hover{
     font-size: 1.1em;
