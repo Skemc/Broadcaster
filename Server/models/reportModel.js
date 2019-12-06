@@ -73,6 +73,14 @@ class reportModel {
         }
         return result;
     }
+    static async isEditedComment(req){
+        let result = false;
+        const edited = await executeQuery(queries[1].isEditedComment, [req.body.comment]);
+        if(edited[0]){
+            result = true;            
+        }
+        return result;
+    }
 
     static async getAll(req){
         const getAll = await executeQuery(queries[1].getAllIncident);
@@ -90,6 +98,10 @@ class reportModel {
     
     static async editIncident(req){
         const editIncident = await executeQuery(queries[1].editIncidentLocation, [req.body.locationLat, req.body.locationLong, parseInt(req.params.id,10), req.user.email ]);
+        return editIncident;
+    }
+    static async editCommentIncident(req){
+        const editIncident = await executeQuery(queries[1].editIncidentComment, [req.body.comment, parseInt(req.params.id,10), req.user.email ]);
         return editIncident;
     }
 
